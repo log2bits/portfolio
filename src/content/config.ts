@@ -6,20 +6,15 @@ const experience = defineCollection({
     title: z.string(),
     desc: z.string(),
 
-    // multi-category (project + leadership, etc.)
-    kinds: z.array(z.enum(["work", "project", "leadership"])).default(["project"]),
+    // Path relative to /public, e.g. "/diagram.png".
+    image: z.string().optional(),
 
-    // Optional metadata
-    org: z.string().optional(),
-    role: z.string().optional(),
-    start: z.string().optional(),
-    end: z.string().optional(),
+    kinds: z.array(z.enum(["work", "project", "leadership"])).default(["project"]),
 
     pinned: z.boolean().default(false),
     resume: z.boolean().default(false),
 
-    // Optional: force which sections this appears in (duplicates allowed)
-    // If omitted, we place it in one section by priority.
+    // Forces which sections an entry appears in. If unset, placed by priority.
     showIn: z.array(z.enum(["work", "project", "leadership"])).optional(),
 
     tags: z.array(z.string()).default([]),

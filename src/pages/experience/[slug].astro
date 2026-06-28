@@ -9,25 +9,23 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+const kindLabel = { work: "work", project: "project", leadership: "leadership" };
+const kinds = entry.data.kinds ?? ["project"];
 ---
 
-<BaseLayout title={entry.data.title}>
+<BaseLayout title={entry.data.title} pageTitle={entry.data.title}>
   <header>
-    <h1>{entry.data.title}</h1>
-
-    <p>
-      {entry.data.role}
-      {entry.data.org && <> · {entry.data.org}</>}
-      {(entry.data.start || entry.data.end) && <> · {entry.data.start ?? ""}{entry.data.end ? ` - ${entry.data.end}` : ""}</>}
-    </p>
-
     <p class="desc">{entry.data.desc}</p>
 
-    {entry.data.tags?.length ? (
-      <ul class="tags">
-        {entry.data.tags.map((t) => <li class="tag">{t}</li>)}
-      </ul>
-    ) : null}
+    <hr />
+
+    <ul class="tags">
+      {kinds.map((k) => (
+        <li class={`card-kind kind-${k}`}>{kindLabel[k]}</li>
+      ))}
+      {entry.data.tags?.map((t) => <li class="tag">{t}</li>)}
+    </ul>
 
     {entry.data.links && (
       <p>

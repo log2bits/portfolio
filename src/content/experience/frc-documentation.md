@@ -1,66 +1,35 @@
 ---
 title: FRC Technical Documentation
-desc: Docusaurus documentation for FRC swerve drive systems to transfer knowledge to future team leads.
-tags: [Documentation, Technical Writing, Docusaurus, Robotics, Systems Engineering, Knowledge Transfer]
+desc: A from-scratch teaching wiki that explains the team's hardest robotics systems from first principles, so the knowledge survives after I graduate.
+tags: [documentation, technical-writing, docusaurus, robotics, systems-engineering, knowledge-transfer]
 kinds: [project, leadership]
-resume: true
+image: /frc-docs.png
 ---
 
-### Overview
-This project is a comprehensive technical documentation effort for an FRC robotics team, built using a **custom Docusaurus site**. The documentation explains complex robotics systems—most notably coaxial swerve drive—from first principles, with the goal of making advanced systems understandable, maintainable, and extensible by future team members.
+### The short version
 
-Rather than serving as a reference dump, the site is structured as a learning resource that connects theory, implementation, and real-world behavior.
+I was doing most of the programming for our FRC team, which meant when I graduated, a huge amount of knowledge was going to walk out the door with me. So I built a wiki that teaches the team's hardest systems from first principles: control theory, swerve drive, sensors, telemetry, and simulation. It's a real website, built so people can learn from it years from now, not a pile of reference notes. [You can read it here.](https://6962-technical-wiki.vercel.app/paper)
 
-### Project Link
-- **Technical Paper:** https://6962-technical-wiki.vercel.app/paper
+### Why it needed to exist
 
----
+By my senior year I'd become the team's single point of failure on software. I'd written most of the codebase and learned most of the hard concepts on my own, and almost none of it was written down. The FRC resources that do exist are scattered, often out of date, and usually assume you already know a lot, which is a rough wall for a new student. Most people just fall back to trial and error. I wanted something better.
 
-### Motivation
-As the lead programmer and student mentor, I was responsible for designing and implementing many of the team’s most complex systems, including swerve drive, autonomous motion, state estimation, and simulation.
+### Finding the right tool, which took a few tries
 
-Without clear documentation, this knowledge would be lost each season as students graduated. Existing resources were fragmented, outdated, or assumed too much prior knowledge, making onboarding unnecessarily difficult.
+Getting the format right was its own little project. I started with slides plus a recorded walkthrough, but that's miserable if you just want one specific topic, since you have to scrub through everything to find it. I tried Slidev, then Obsidian, which is great for writing in markdown but won't host to a website for free. I finally landed on **Docusaurus**: free, open source, and built from the ground up to be a real website. Then I spent a while customizing the layout and theme to fit what I wanted.
 
----
+### Structuring it to teach
 
-### Documentation Scope
-The site covers the full robotics software and hardware stack, including:
-- Drive train architectures and tradeoffs
-- Coaxial swerve drive mechanics and control
-- Kinematics and motion profiling
-- Odometry and sensor fusion
-- Autonomous path planning
-- Simulation and testing strategies
-- Safety systems and failure modes
+The other big decision was how to organize it. My first instinct was lots of tiny pages, each on one specific thing, all linked together, so people could jump straight to what they wanted. But looking at how other teams structure their resources, I realized that's overwhelming. Dozens of pages to sift through is harder than a few that walk you through a hard concept step by step. So I split it into a handful of parts, control theory, sensors, swerve drive, telemetry, and simulation, each one building up instead of dumping facts.
 
-Each section builds concepts incrementally, tying mathematical models and control theory directly to physical hardware and observed behavior.
+### How it reads
 
----
+The whole thing teaches from the ground up, with a plain example before any math. Control theory starts with balancing a pencil on your finger: your eyes measure where it is, and your brain predicts where it's going, which is feedback and feedforward without the jargon. PID gets explained by moving an elevator to a target floor. Every concept ties back to real code and to what the robot does, so it's never theory floating in a vacuum.
 
-### Site Design and Tooling
-The documentation was implemented as a **custom Docusaurus site**, chosen for its support of:
-- Structured navigation and versioned content
-- Markdown-based authoring for fast iteration
-- Embedded diagrams and annotated images
-- Long-term maintainability across seasons
+### What it became
 
-The information architecture was intentionally designed to support both quick reference and deep learning, allowing readers to either jump to specific topics or follow a guided progression.
+This wiki turned into the backbone of how I passed things down. It's the basis for the workshops I taught new programmers, the onboarding for new members, and my senior capstone, which was a whole course on robotics programming and electronics. A lot of my last season went into mentoring Arjun, the next programming lead, so the team wouldn't have to relearn everything from scratch the moment I left.
 
----
+### What I take from it
 
-### Teaching and Knowledge Transfer
-This documentation became the foundation for:
-- Workshops taught to new programmers
-- Onboarding materials for future team members
-- A senior capstone project focused on teaching robotics programming and electronics
-
-By formalizing system knowledge in a durable, well-organized format, the team can now iterate faster and avoid repeating costly design and implementation mistakes.
-
----
-
-### What This Shows
-- Treating documentation as a first-class engineering artifact
-- Explaining complex technical systems clearly and precisely
-- Designing information architecture for long-term maintainability
-- Leadership through teaching and technical mentorship
-- Using modern documentation tooling to support real engineering teams
+Writing this taught me as much as building any of the robots did, because you can't explain control theory clearly until you really understand it. And it's the piece of my work that outlasts me. The robots get torn down and rebuilt every year, but the knowledge in here sticks around for whoever comes next.

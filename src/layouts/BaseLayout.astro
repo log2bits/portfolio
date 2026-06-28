@@ -1,44 +1,11 @@
 ---
-const { title = "Logan MacAskill" } = Astro.props;
+const { title = "Logan MacAskill", pageTitle, wide = false } = Astro.props;
 
-// Current path (e.g. "/", "/experience", "/about")
 const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
-
 const isHome = path === "/";
-const isExperience = path === "/experience";
 const isAbout = path === "/about";
 
-// Button rules:
-// - Home: left -> /about, right -> /experience
-// - Other pages: left -> /, right -> the "other" page (experience <-> about)
-let leftHref = "/";
-let leftLabel = "Home";
-
-let rightHref = "/experience";
-let rightLabel = "Experience";
-
-if (isHome) {
-  rightHref = "/about";
-  rightLabel = "About Me";
-  leftHref = "/experience";
-  leftLabel = "Experience";
-} else if (isExperience) {
-  leftHref = "/";
-  leftLabel = "Home";
-  rightHref = "/about";
-  rightLabel = "About Me";
-} else if (isAbout) {
-  leftHref = "/";
-  leftLabel = "Home";
-  rightHref = "/experience";
-  rightLabel = "Experience";
-} else {
-  // Any other page: default right button to Experience
-  leftHref = "/";
-  leftLabel = "Home";
-  rightHref = "/experience";
-  rightLabel = "Experience";
-}
+const headerTitle = pageTitle ?? (isAbout ? "About Me" : undefined);
 ---
 
 <!DOCTYPE html>
@@ -47,38 +14,30 @@ if (isHome) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/MapleMono-Regular.ttf.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/MapleMono-Bold.ttf.woff2" as="font" type="font/woff2" crossorigin>
   </head>
-  
-  <body style="font-size: 75%">
-    <main>
-      <img src="/icon.png" class="icon" alt="" width="72" height="72" />
-      <slot />
-        <nav class="site-bottom-nav">
-          <button
-            class="btn primary"
-            type="button"
-            onclick={`window.location.href='${leftHref}'`}
-          >
-            {leftLabel}
-          </button>
 
-          <button
-            class="btn secondary"
-            type="button"
-            onclick={`window.location.href='${rightHref}'`}
-          >
-            {rightLabel}
-          </button>
-        </nav>
+  <body>
+    <main class={wide ? "wide" : ""}>
+      {!isHome && (
+        <header class="page-header">
+          <div class="page-header-title">
+            <a class="top-home" href="/" aria-label="Home">
+              <img src="/favicon.svg" class="icon name-icon" alt="" width="48" height="48" />
+            </a>
+            {headerTitle && <h1 class="page-title">{headerTitle}</h1>}
+          </div>
+          <nav class="top-nav">
+            <a class="filter-btn filter-link" href="/">home</a>
+            {!isAbout && <a class="filter-btn filter-link" href="/about">about me</a>}
+          </nav>
+        </header>
+      )}
+      <slot />
     </main>
   </body>
 </html>

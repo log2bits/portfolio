@@ -3,79 +3,38 @@ layout: ../layouts/BaseLayout.astro
 title: About Me
 ---
 
-## About
+I'm a computer science student at UC Santa Cruz, going into my third year, and I'm from Los Altos. Over the past few years I've gone deep on a bunch of things: robotics, audio engineering, AI, 3D printing, game development, data science, and hardware. Graphics programming is the one that stuck to me like nothing else, and it's the direction I'm building toward now.
 
-I’m a second-year **Computer Science major at UCSC**, originally from Los Altos and currently based in Santa Cruz.
+### Why graphics
 
-I like building software that’s **fast, visual, and grounded in real systems** - especially when performance and correctness actually matter.
+Most of my favorite work has been about performance, taking something that already runs and making it run a lot faster. The catch with optimization is that the payoff usually hides in numbers you have to go digging for. Graphics is the exception. It's one of the few places where low-level engineering shows up right on the screen, so when you get something right, you get to watch it run.
 
----
+There's also a gap I can't stop thinking about. Modern GPUs can do far more than most software ever asks of them, and a lot of recent games leave that performance sitting on the table. I want to be the person who pulls it out of the hardware and makes the result look good while it runs fast.
 
-### What I enjoy working on
+### Where I'm headed
 
-- **Performance & optimization**  
-  I enjoy taking something that works and making it *significantly faster*, whether that’s an algorithm, a pipeline, or a system under real constraints.
+I've finally committed to graphics specifically, so right now I'm building rendering projects in C++ with Vulkan and in Rust with WebGPU, learning how the modern pipeline works from close to the metal. The goal is to become a rendering engineer, and I'd be happy doing that in a lot of places: games (I love them), film and media, the web (something like Figma), low-level GPU work at a hardware company, or research. I've been reading about ReSTIR lately and it's been blowing my mind.
 
-- **Visual + interactive outputs**  
-  Projects are most fun to me when I can *see* what the code is doing.  
-  This is what originally drew me to tools like **p5.js**, **computer vision**, and simulation.
+Realtime is the part that pulls at me most, because it's where the cleverest tricks live. The constraints are brutal, so people invent sophisticated workarounds to hit their frame budgets, and that kind of problem-solving is exactly what I like learning.
 
-- **Graphics & GPU programming**  
-  Lately I’ve been learning how computer graphics work at a lower level - shaders, GPU-friendly algorithms, and performance-oriented rendering.
+### How I got here
 
----
+Graphics didn't come out of nowhere. I learn best by building things that produce real output and break in interesting ways when I get something wrong, and I've been doing that for years.
 
-### Hardware & systems curiosity
+A lot of it was robotics. I was the programming lead and later a student mentor for an FRC team, where I went deep on control theory, state estimation, and simulation, and built a swerve drive from scratch. Before that, visual and algorithmic programming hooked me early through p5.js, computer vision, and data analysis. That feeling of seeing the code do something is a big part of why graphics clicked later.
 
-I enjoy working close to hardware:
-- Built my own PC years ago and have continuously upgraded it
-- Recently focused on **small form factor builds**, pushing down to a ~**10L case** without major performance tradeoffs
-- Interested in how physical constraints shape software decisions
+### Other things I geek out on
 
----
+I like working close to hardware. I built my own PC years ago and have kept upgrading it, and lately I've been into small form factor builds, getting a machine down to around a 10-liter case without giving up much performance. The way physical limits push software decisions is something I keep coming back to.
 
-### Other technical interests
-
-- **Audio & signal processing**  
-  Recently got into EQ, calibration software, and speaker/headphone measurement.  
-  Currently thinking about building my own **AutoEQ-style algorithm**.
-
-- **Languages & tools**  
-  Learning **Rust** for its performance, safety, and design philosophy.
-
-- **Game development**  
-  Active in UCSC’s **GDA (Game Design & Art) club**, learning **Godot** and game systems design.
-
----
-
-### How I approach projects
-
-I tend to learn by building things that:
-- Produce real output (visuals, data, or hardware interaction)
-- Expose performance tradeoffs
-- Break in interesting ways if I get something wrong
-
-Right now I’m focused on deepening my understanding of systems, graphics, and performance-oriented software while continuing to build technically ambitious projects.
+I've also gotten into audio and signal processing: EQ, calibration software, and measuring how speakers and headphones really perform, and I'm thinking about writing my own AutoEQ-style algorithm. I'm active in UCSC's Game Design and Art club, where I work in Godot and learn how game systems fit together. And Rust has become my go-to when I want performance and safety in the same language.
 
 ### Timeline
 
-**High School (2019–2023)**  
-- Dual-enrolled at Foothill College, completing college-level coursework alongside high school  
-  *(Chemistry, Biology, and three Physics courses)*  
-- Built a strong CS foundation through AP CS A, robotics (FRC #6962), and independent projects  
-- Programming Lead for FRC robotics team; focused on control systems, simulation, and software reliability  
-- Explored visual and algorithmic programming through p5.js, data analysis, and optimization projects  
+**High school (2019 to 2023).** Dual-enrolled at Foothill College, taking college-level chemistry, biology, and three physics courses alongside high school. Built a CS foundation through AP CS A, robotics (FRC #6962), and a lot of independent projects. Served as programming lead for the robotics team, focused on control systems, simulation, and software reliability.
 
-**Summer 2022 — Software Engineering Intern, SmugMug**  
-- Full-time paid internship after sophomore year of high school  
-- Worked on production software systems, gaining early exposure to professional engineering workflows  
+**Summer 2022, Software Engineering Intern at SmugMug.** Full-time paid internship after my sophomore year of high school, working on production software systems.
 
-**Summer 2023 — Software Engineering Intern, Flickr**  
-- Part-time internship after junior year of high school  
-- Focused on cloud compute optimization, performance tuning, and cost modeling in real production systems  
+**Summer 2023, Software Engineering Intern at Flickr.** Part-time internship after my junior year, focused on cloud compute optimization, performance tuning, and cost modeling in real production systems.
 
-**University (2023–Present)**  
-- Computer Science major at UC Santa Cruz (currently second year)  
-- Continuing to build performance-oriented, systems-level projects  
-- Deepening focus on graphics, GPU programming, computer vision, data analysis, and infrastructure  
-- Active in Game Design & Art (GDA) club; learning Godot and game systems engineering
+**University (2023 to now).** Computer science major at UC Santa Cruz, going into my third year. Building performance-oriented, systems-level projects, deepening my focus on graphics and GPU programming, and working toward a rendering engineer role.

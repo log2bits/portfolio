@@ -1,89 +1,45 @@
 ---
 title: FRC Swerve Drive
-desc: Odometry, kinematics, and simulation for an FRC swerve drive.
-tags: [Java, Robotics, Control Theory, Kinematics, Odometry, Simulation, State Estimation]
+desc: A coaxial swerve drive built from scratch, custom chassis to control theory to a full physics simulation.
+image: /swerve-module.png
+tags: [java, robotics, control-theory, kinematics, odometry, simulation, state-estimation]
 kinds: [project, leadership]
-resume: true
 ---
 
-### Overview
-This project is a complete, from-scratch implementation of a **coaxial swerve drive system** for an FRC robot. It spans kinematics, odometry, control theory, autonomous motion planning, and full physics simulation.
+### The short version
 
-I led the design and implementation of both the hardware integration and the software stack, enabling precise omnidirectional movement, robust autonomous driving, and realistic simulation without requiring access to the physical robot.
+This is the biggest project I've taken on. A coaxial swerve drive built from scratch, every part of it: the custom chassis (I did the CNC, wiring, and electronics), the modules, and the entire software stack. Swerve is the most capable and the most complicated drivetrain in FRC, and our team had never attempted it. I led an off-season team, taught the workshops, and had a working prototype in a month, about four months ahead of what we expected. Roughly $4,000 of hardware and around 2,000 lines of code.
 
----
+### What swerve is, and why it's hard
 
-### Swerve Drive Motion Model
-Unlike tank or mecanum drive systems, swerve drive allows a robot to translate and rotate simultaneously by independently controlling the direction and velocity of each wheel module.
+Most FRC robots drive like a tank: wheels fixed forward, turn by spinning one side faster. Swerve gives every wheel its own steering motor and its own drive motor, so the robot can move in any direction and rotate at the same time.
 
 ![Swerve translation, rotation, and combined motion](/diagram.png)
 
-This motion model requires converting chassis-level commands into per-module steering angles and wheel velocities using vector algebra and kinematics.
+That's a huge advantage on the field, but the control problem is brutal, and there's almost no good documentation online. There are swerve libraries other teams publish, but I built my own, because FRC is about learning and I was really excited about it.
 
----
+### The build
 
-### Coaxial Swerve Module
-Each module uses a coaxial design where steering and drive are mechanically coupled but independently controlled.
+The modules came as kits that we assembled, but the chassis was fully custom, designed and machined by me.
 
 ![Internal coaxial swerve gearbox](/gearbox.png)
 
-![Assembled swerve module](/swerve-module.png)
-
-This design enables compact packaging, a low center of gravity, and precise control over both wheel direction and speed.
-
----
-
-### Mechanical Design
-The swerve modules were designed and analyzed as full mechanical systems rather than treated as black boxes.
-
-![Swerve module CAD blueprint](/swerve-module-blueprint.png)
-
-This required accounting for gear ratios, backlash, structural rigidity, and sensor placement to ensure accurate and repeatable control.
-
----
-
-### Robot Architecture
-The full robot integrates four swerve modules with onboard computation, sensing, and power distribution.
+Designing it meant treating the modules as real mechanical systems, accounting for gear ratios, backlash, rigidity, and where every motor and sensor mounts, not just bolting parts together.
 
 ![Labeled robot chassis with electronics and modules](/labeled-robot-chassis.png)
 
-Encoders, motor controllers, a gyroscope, and vision sensors feed into the control system to support real-time odometry and closed-loop control.
+### The control theory nobody on the team had
 
----
+Before I led programming, the team had no concept of control theory. No PID, no feedforward, no motor or gearbox torque math. So I taught myself control theory from scratch, the kind of thing that's usually graduate-level, and then taught it to the team. Each wheel module runs its own tuned PID plus a feedforward model, and I seed the fast built-in encoder from an absolute one so the motor controllers can run a 1,000 Hz control loop. I also turned the current limit into a feature: instead of guessing, I compute the exact limit from the robot's weight and the carpet's friction, so the wheels deliver max grip without ever slipping or browning out the battery.
 
-### State Estimation and Odometry
-Robot pose is estimated by fusing:
-- Wheel encoder data
-- Gyroscope measurements
-- Vision-based localization
+### Knowing where the robot is
 
-Filtering techniques are used to reduce noise and drift, allowing the robot to maintain accurate position estimates even under collisions or wheel slip.
+A swerve robot is useless for autonomous if it doesn't know where it is. I fuse three sources, the wheel encoders, a gyro, and AprilTag vision, through a Kalman-filter pose estimator, which gives a position estimate good to under a centimeter. The nice part is it holds up when the robot gets shoved or the wheels slip, because the filter weighs the noisy sources against each other instead of trusting any single one.
 
----
+### The whole robot, simulated
 
-### Autonomous Motion and Path Planning
-The robot supports fully autonomous driving using preplanned and dynamic trajectories.
+This is my favorite part. The entire robot can run in a physics simulation, modeled all the way down to the motors: real torque curves, wheel inertia, battery voltage and current draw, even brownouts. Because the simulation goes that deep, the exact same code that drives the real robot drives the simulated one, with no changes. That's a bigger deal than it sounds. Time on the physical robot is the biggest bottleneck on any FRC team, and this let us write and tune code from a laptop, anywhere, long before the robot was even built.
 
-![Real-time autonomous pathfinding simulation](/pathfinding.gif)
+### What I take from it
 
-The simulation shows a virtual field where the robot plans paths in real time and actively reroutes around **moving obstacles**, allowing autonomous logic to be tested and tuned without physical hardware.
-
----
-
-### Full Physics Simulation
-A complete physics simulation models:
-- Motor dynamics and torque curves
-- Wheel inertia and friction
-- Battery voltage and current draw
-- Chassis motion and field interaction
-
-The same control code runs identically in simulation and on the real robot, enabling safe development, debugging, and tuning entirely in software.
-
----
-
-### What This Shows
-- Applying kinematics and control theory to real hardware
-- Designing reliable state estimation systems
-- Building accurate simulations for complex physical systems
-- Translating abstract math into robust, real-world behavior
-- Leading and delivering a large, multidisciplinary engineering project
+This was me dragging the team into modern FRC. I showed up with a drivetrain they'd never tried and control theory they'd never used, learned all of it from scratch, and then taught it to the team. The deep writeup, with all the math and the code, lives in the wiki I built for exactly that reason: [the technical paper](https://6962-technical-wiki.vercel.app/paper). The drivetrain code itself is [on GitHub](https://github.com/team6962/Code-2024).

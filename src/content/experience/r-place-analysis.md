@@ -1,75 +1,49 @@
 ---
 title: r/place Analysis
-desc: Data analysis of Reddit’s r/place database.
-tags: [Python, Data Analysis, Visualization, Large Datasets, Statistics]
+desc: Mining Reddit's r/place pixel canvas with Python to surface untouched pixels, hidden Among Us crewmates, and the real images under the noise.
+image: /r-place-statistics.png
+tags: [python, data-analysis, visualization, large-datasets, statistics]
 kinds: [project]
-resume: true
 ---
 
-### Overview
-This project is an exploratory and quantitative analysis of Reddit’s **r/place** dataset, a large-scale collaborative canvas where millions of users placed colored pixels over time. The dataset captures both individual user behavior and emergent large-scale coordination patterns.
+### The short version
 
-Using Python, I analyzed the full event history to uncover structural patterns, persistence, and anomalies within the canvas.
+r/place was a giant shared canvas on Reddit where millions of people placed one colored pixel at a time, with no one in charge, constantly painting over each other. I took the full history of every pixel placement and ran it through Python to pull real structure out of the chaos. The best part: when you average the canvas over time, the constant vandalism smooths away and the picture people were trying to make shows back up. The version I made of the Canadian flag doing this hit **45,000+ upvotes** on Reddit.
 
----
+### The data
 
-### Dataset
-The r/place dataset consists of timestamped pixel placements, including:
-- Pixel coordinates
-- Color values
-- Temporal ordering of changes
+Every entry in the dataset is one pixel placement: where it went (x, y), what color, and when. Simple on its own. The catch is there are a lot of them, and a single pixel might get painted over hundreds of times. So before any analysis, I had to reconstruct what the whole canvas looked like at any moment, and track how each pixel changed across the entire event. Getting that to run without choking on the size was most of the upfront work.
 
-The scale of the data required careful preprocessing to efficiently reconstruct the canvas state over time and analyze long-running behaviors.
+### Pixels nobody ever touched
 
----
+The first thing I looked for was pixels that never changed once, start to finish. Out of the entire canvas, only **3,966** stayed completely untouched the whole event.
 
-### Persistent Pixels
-One analysis focused on identifying pixels that were **never changed** throughout the entire event.
+![Pixels that stayed unchanged for the entire event](/r-place-untouched.png)
 
-![Pixels that remained unchanged for the entire event](/r-place-untouched.png)
+They mostly show up in two kinds of places: spots people coordinated hard to protect, and out-of-the-way corners nobody cared enough to mess with. It's a neat way to see where stability comes from on a canvas where almost everything is a fight.
 
-Only **3,966 pixels** remained untouched from start to finish. These pixels tend to cluster in areas of strong coordination or low visual salience, revealing how stability emerges in an otherwise highly adversarial environment.
+### Hidden crewmates
 
----
+If you color the canvas by how often each pixel changed instead of by its final color, stuff appears that you'd never catch while it was live.
 
-### Hidden Patterns
-By visualizing pixel activity density, subtle patterns become visible that are almost impossible to notice during live participation.
+![Hidden low-activity patterns across the canvas](/r-place-crewmates.png)
 
-![Hidden low-activity patterns in the canvas](/r-place-crewmates.png)
+All over the place there are little figures tucked into quiet regions, the standout being a bunch of hidden **Among Us crewmates**. People kept them alive with slow, coordinated edits in low-traffic spots, so they stayed hidden in plain sight until you look at the canvas this way.
 
-This analysis revealed numerous small figures—most notably **hidden Among Us crewmates**—embedded across the canvas, preserved through coordinated low-frequency edits.
+### Full analysis + Heatmap
 
----
+I also tried generating a heatmap where most of the edits occured. Here's that, plus some more statistics:
 
-### Temporal Averaging
-To study long-term structure, I computed **time-averaged pixel values**, effectively showing what the canvas looks like when short-lived conflicts are smoothed out.
+![The r/place canvas averaged over time](/r-place-statistics.png)
 
-![Time-averaged r/place canvas](/r-place-statistics.png)
+### The Canadian flag
 
-This highlights dominant regions, persistent color blocks, and areas of repeated contention.
+A great example of where averaging chaos pays off is the canadian flag:
 
----
+![The Canada section of the canvas, averaged over time](/r-place-canada.png)
 
-### Case Study: Canada
-A focused analysis on the Canadian flag demonstrated how averaging pixel values over time reveals the *intended* structure of the artwork despite constant edits and vandalism.
+Live, that area was a constant mess of edits and people trying to deface it. But averaged over time, the flag people were defending snaps right into focus, with the vandalism washed out. I posted this one and it took off, **over 45,000 upvotes**. It's the clearest proof of the whole idea: with enough data, plain averaging can recover what something was supposed to look like even when it was under constant attack.
 
-![Canada flag averaged over time](/r-place-canada.png)
+### What I take from it
 
-This visualization gained significant traction on Reddit, receiving **over 45,000 upvotes**, and served as a clear demonstration of how statistical aggregation can recover signal from noisy, adversarial data.
-
----
-
-### Results and Insights
-- Identified thousands of pixels that were never modified
-- Revealed hidden low-activity patterns embedded in the canvas
-- Demonstrated how temporal averaging exposes persistent structure
-- Showed how large-scale coordination emerges from simple local rules
-
----
-
-### What This Shows
-- Working with large, real-world datasets
-- Designing custom preprocessing pipelines
-- Extracting structure from noisy, adversarial data
-- Creating visualizations that reveal non-obvious patterns
-- Communicating technical results to a broad audience
+The thing I like about this project is how simple the winning move was. No fancy model, just counting how often pixels change and averaging them over time, run carefully over a dataset big enough that you have to think about how you touch it. And it pulled out things nobody could see live: the pixels that never moved, the hidden figures, the real images under the noise. That's the whole lesson for me. A lot of structure is sitting in messy real-world data if you pick the right simple thing to measure.

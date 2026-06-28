@@ -1,6 +1,41 @@
-/* ===================== Theme ===================== */
+/* Fonts */
+
+@font-face {
+  font-family: "Maple Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/MapleMono-Regular.ttf.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Maple Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/MapleMono-Italic.ttf.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Maple Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/MapleMono-Bold.ttf.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Maple Mono";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/MapleMono-BoldItalic.ttf.woff2") format("woff2");
+}
+
+/* Theme */
 
 :root {
+  /* Catppuccin Mocha */
   --rosewater: #f5e0dc;
   --flamingo: #f2cdcd;
   --pink: #f5c2e7;
@@ -27,9 +62,18 @@
   --base: #1e1e2e;
   --mantle: #181825;
   --crust: #11111b;
+
+  /* Category accent colors */
+  --kind-work: var(--blue);
+  --kind-project: var(--mauve);
+  --kind-leadership: var(--peach);
+
+  /* Just barely above half the pill button's height, so buttons fully round
+     (clipped to height/2) and cards share the same absolute curve. */
+  --radius: 1rem;
 }
 
-/* ===================== Reset ===================== */
+/* Reset */
 
 * {
   margin: 0;
@@ -37,13 +81,18 @@
   box-sizing: border-box;
 }
 
-/* ===================== Base  ===================== */
+/* Base */
 
 body {
   background: var(--base);
   color: var(--subtext1);
-  font-family: "Fira Sans";
+  font-family: "Maple Mono", ui-monospace, monospace;
+  font-size: 1rem;
+  line-height: 1.55;
   word-wrap: break-word;
+  /* Enable OpenType ligatures (common ligatures + contextual alternates) */
+  font-feature-settings: "liga", "calt";
+  font-variant-ligatures: common-ligatures contextual;
 }
 
 a {
@@ -55,14 +104,16 @@ strong {
   color: var(--text);
 }
 
-/* ===================== Layout ===================== */
+/* Layout */
 
 main {
   max-width: 37.5rem;
-  margin: 14vh auto 0;
-  font-size: 0.9rem;
-  line-height: 1.5rem;
-  padding-bottom: 2rem;
+  margin: 3rem auto 0;
+  padding-bottom: 4rem;
+}
+
+main.wide {
+  max-width: 60rem;
 }
 
 /* consistent vertical rhythm */
@@ -71,23 +122,53 @@ section > * + * {
   margin-top: 1rem;
 }
 
-/* ===================== Elements ===================== */
+/* Elements */
 
-.icon {
-  margin: 0 0 1.75rem;
-  image-rendering: pixelated;
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  /* wrap-reverse means when the nav can't fit beside the title, it wraps
+     ABOVE the title instead of below. */
+  flex-wrap: wrap-reverse;
 }
 
-.web-code {
-  margin-top: 1rem;
-  color: var(--overlay0);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  font-family: "Fira Mono";
+.page-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.top-home {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.icon {
+  display: block;
+}
+
+.top-nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  /* Stay right-aligned whether sharing a line with the title or on its own. */
+  margin-left: auto;
 }
 
 .desc {
-  color: var(--overlay0);
+  color: var(--subtext0);
+  font-style: italic;
 }
 
 ul,
@@ -100,43 +181,7 @@ li + li {
   margin-top: 0.5rem;
 }
 
-/* ===================== Buttons / Nav ===================== */
-
-nav {
-  margin-top: 3rem;
-}
-
-nav::after {
-  content: "";
-  display: table;
-  clear: both;
-  width: 100%;
-}
-
-.btn {
-  border: 0;
-  border-radius: 1.25rem;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 0.75rem;
-  padding: 0.5rem 1rem;
-}
-
-.primary {
-  float: left;
-  background: var(--blue);
-  color: var(--base);
-}
-
-.secondary {
-  float: right;
-  background: var(--base);
-  border: 1px solid var(--surface2);
-  color: var(--blue);
-  text-align: center;
-}
-
-/* ===================== Typography ===================== */
+/* Typography */
 
 h1 {
   font-size: 2rem;
@@ -157,32 +202,12 @@ h3 {
 }
 
 hr {
-  color: var(--surface1);
-  background-color: var(--surface1);
+  display: block;
+  width: 100%;
+  height: 0;
   border: none;
-  height: 1px;
-}
-
-@keyframes drop-in {
-  0% {
-    transform: translateY(-120vh);
-    opacity: 0;
-  }
-  60% {
-    transform: translateY(6px);
-    opacity: 1;
-  }
-  80% {
-    transform: translateY(-2px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-
-.icon {
-  animation: drop-in 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  border-top: 1px solid var(--surface1);
+  margin: 1rem 0;
 }
 
 li a {
@@ -209,14 +234,6 @@ li a:focus-visible::after {
   transform: scaleX(1);
 }
 
-.btn {
-  transition: filter 150ms ease, transform 150ms ease;
-}
-
-.btn:hover {
-  filter: brightness(1.25);
-}
-
 /* only add side padding on small screens */
 @media (max-width: 42rem) {
   main {
@@ -230,16 +247,14 @@ li a:focus-visible::after {
 }
 
 
-/* =========================
-   Code Blocks (Catppuccin)
-   ========================= */
+/* Code blocks */
 
 pre.astro-code {
   background-color: var(--base) !important;
   color: var(--text);
 
-  border-radius: 0.5rem;
   border: 1px solid var(--surface1);
+  border-radius: var(--radius);
 
   padding: 0.5rem 1rem;
 
@@ -250,7 +265,7 @@ pre.astro-code {
 pre.astro-code,
 pre.astro-code code {
   font-family:
-    "Fira Mono",
+    "Maple Mono",
     monospace;
 }
 
@@ -265,11 +280,11 @@ pre.astro-code .line span {
   color: var(--text);
 
   padding: 0.15em 0.4em;
-  border-radius: 0.5rem;
   border: 1px solid var(--surface1);
+  border-radius: var(--radius);
 
   font-family:
-    "Fira Mono",
+    "Maple Mono",
     monospace;
 }
 
@@ -281,12 +296,35 @@ pre.astro-code .line span {
   width: 100%;
   overflow: hidden;
 
-  border-radius: 0.5rem;
   border: 1px solid var(--surface1);
+  border-radius: var(--radius);
   background: var(--mantle);
 }
 
 .sheet-embed iframe {
+  display: block;
+  width: calc(100% / var(--scale));
+  height: calc(var(--vh) / var(--scale));
+  border: 0;
+
+  transform: scale(var(--scale));
+  transform-origin: top left;
+}
+
+.chart-embed {
+  --scale: 0.8;
+  --vh: 360px;
+
+  height: var(--vh);
+  width: 100%;
+  overflow: hidden;
+
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius);
+  background: var(--mantle);
+}
+
+.chart-embed iframe {
   display: block;
   width: calc(100% / var(--scale));
   height: calc(var(--vh) / var(--scale));
@@ -301,8 +339,8 @@ img:not(.icon) {
   display: block;
   width: 100%;
 
-  border-radius: 0.5rem;
   border: 1px solid var(--surface1);
+  border-radius: var(--radius);
 
   margin: 1rem 0;
 }
@@ -312,69 +350,33 @@ img:not(.icon) {
   padding: 0;
   margin: 0.25rem 0 0;
 
-
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  padding-bottom: 1rem;
+}
+
+.tags li + li {
+  margin-top: 0;
 }
 
 .tag {
+  display: inline-flex;
+  align-items: center;
   border: 1px solid var(--surface1);
   background: var(--mantle);
   color: var(--overlay2);
 
-  border-radius: 999px;
-  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius);
+  padding: 0.3rem 0.75rem;
 
-  font-size: 0.85rem;
-  line-height: 1.5;
-  white-space: nowrap;
-  margin-top: 0.0rem;
-}
-
-.can-word {
-  position: relative;
-  display: inline-block;
-  font-weight: 800;
   font-style: italic;
-  color: var(--green);
+  font-size: 0.8rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  margin-top: 0;
 }
 
-.can-word::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-  height: 2px;
-  background: currentColor;
-
-  transform: scaleX(0);
-  transform-origin: left;
-
-  animation: can-underline 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 120ms; /* optional, feels nicer */
-}
-
-@keyframes can-underline {
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.item-meta {
-  margin-top: 0.15rem;
-  color: var(--subtext0);
-  font-size: 0.85rem;
-}
-
-.item-meta .dot {
-  margin: 0 0.25rem;
-  color: var(--subtext0);
-}
-
-/* Mobile: don’t squeeze title/date too hard */
+/* Mobile: don't squeeze title/date too hard */
 @media (max-width: 42rem) {
   .item-head {
     flex-direction: column;
@@ -386,6 +388,261 @@ img:not(.icon) {
   }
 }
 
-strong {
+/* Home: intro */
+
+.intro h1 {
+  margin-bottom: 0.25rem;
+}
+
+.name-line {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.name-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+}
+
+.intro .desc {
+  color: var(--subtext0);
+  max-width: 36rem;
+  font-size: 1rem;
+}
+
+/* Home: filter bar */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Nav pill links (Home / About Me): rosewater border, hover changes bg. */
+.filter-btn.filter-link {
+  --pill-border: var(--rosewater);
+  text-decoration: none;
+  color: var(--rosewater);
+}
+
+.filter-btn.filter-link:hover {
+  background: color-mix(in oklab, var(--rosewater) 15%, var(--surface0));
+}
+
+.filter-bar .filter-link {
+  margin-left: auto;
+}
+
+.filter-btn {
+  --pill-border: var(--surface1);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--pill-border);
+  color: var(--subtext1);
+  font-family: inherit;
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.filter-btn:hover {
+  background: var(--surface0);
+}
+
+.filter-btn.is-active {
+  --pill-border: var(--overlay0);
+  background: var(--surface0);
   color: var(--text);
+}
+
+/* Color-coded filter pills. Hover/active changes only the background fill. */
+.filter-btn.kind-work {
+  --pill-border: var(--kind-work);
+  color: var(--kind-work);
+}
+.filter-btn.kind-work:hover,
+.filter-btn.kind-work.is-active {
+  background: color-mix(in oklab, var(--kind-work) 15%, var(--surface0));
+}
+
+.filter-btn.kind-project {
+  --pill-border: var(--kind-project);
+  color: var(--kind-project);
+}
+.filter-btn.kind-project:hover,
+.filter-btn.kind-project.is-active {
+  background: color-mix(in oklab, var(--kind-project) 15%, var(--surface0));
+}
+
+.filter-btn.kind-leadership {
+  --pill-border: var(--kind-leadership);
+  color: var(--kind-leadership);
+}
+.filter-btn.kind-leadership:hover,
+.filter-btn.kind-leadership.is-active {
+  background: color-mix(in oklab, var(--kind-leadership) 15%, var(--surface0));
+}
+
+/* Home: card grid */
+
+.card-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  --card-border: var(--surface1);
+  display: flex;
+  flex-direction: column;
+  background: var(--mantle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: var(--text);
+  text-decoration: none;
+  /* Crisp 1px inset shadow draws the outline at the border-radius curve
+     without shrinking the inner area, so the image's rounded top corners
+     stay concentric with the card outline. */
+  box-shadow: inset 0 0 0 1px var(--card-border);
+  transition: background 180ms ease;
+}
+
+/* Border color matches the placeholder background (same color-mix recipe). */
+.card.kind-work {
+  --card-border: color-mix(in oklab, var(--kind-work) 12%, var(--surface0));
+}
+.card.kind-project {
+  --card-border: color-mix(in oklab, var(--kind-project) 12%, var(--surface0));
+}
+.card.kind-leadership {
+  --card-border: color-mix(in oklab, var(--kind-leadership) 12%, var(--surface0));
+}
+
+/* Hover tints the fill with the category color. */
+.card.kind-work:hover {
+  background: color-mix(in oklab, var(--kind-work) 8%, var(--mantle));
+}
+.card.kind-project:hover {
+  background: color-mix(in oklab, var(--kind-project) 8%, var(--mantle));
+}
+.card.kind-leadership:hover {
+  background: color-mix(in oklab, var(--kind-leadership) 8%, var(--mantle));
+}
+
+.card.is-hidden { display: none; }
+
+.card-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--surface0);
+  border-bottom: 1px solid var(--surface1);
+  /* Match the parent card's outer corner so the image curve looks continuous
+     with the border (parent overflow:hidden still clips any overrun). */
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border: 0;
+  /* Match the parent card's outer corner so the image curve looks continuous
+     with the border. */
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.card-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Maple Mono", monospace;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.card.kind-work .card-image-placeholder {
+  background: color-mix(in oklab, var(--kind-work) 12%, var(--surface0));
+  color: var(--kind-work);
+}
+.card.kind-project .card-image-placeholder {
+  background: color-mix(in oklab, var(--kind-project) 12%, var(--surface0));
+  color: var(--kind-project);
+}
+.card.kind-leadership .card-image-placeholder {
+  background: color-mix(in oklab, var(--kind-leadership) 12%, var(--surface0));
+  color: var(--kind-leadership);
+}
+
+.card-body {
+  padding: 0.85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.card-body > * + * { margin-top: 0; }
+
+.card-kinds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.card-kind {
+  display: inline-flex;
+  align-items: center;
+  font-style: italic;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+  background: transparent;
+  white-space: nowrap;
+}
+
+.card-kind.kind-work { color: var(--kind-work); }
+.card-kind.kind-project { color: var(--kind-project); }
+.card-kind.kind-leadership { color: var(--kind-leadership); }
+
+/* When a kind badge appears in a tag row, match the tag pill dimensions */
+.tags .card-kind {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.75rem;
+  line-height: 1.2;
+}
+
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.card-desc {
+  color: var(--subtext0);
+  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  margin: 0;
 }
