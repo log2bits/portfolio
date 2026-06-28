@@ -4,6 +4,7 @@ desc: A 2.5D pizza-delivery game from a 100-person student team. I made the case
 image: /crowd-surfers-transparency.gif
 tags: [godot, game-dev, shaders, rendering, graphics, 3d]
 kinds: [project, leadership]
+order: 1
 ---
 
 ### The short version

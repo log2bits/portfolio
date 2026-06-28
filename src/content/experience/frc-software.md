@@ -4,6 +4,7 @@ desc: Rebuilt our FRC robot's codebase into a modular state-machine architecture
 image: /pathfinding.gif
 tags: [java, robotics, autonomous, state-machines, software-architecture, control-systems, leadership]
 kinds: [project, leadership]
+order: 7
 ---
 
 ### The short version

@@ -1,46 +1,49 @@
 ---
 title: Perceptual Color Space Experiments
-desc: Some fun I had messing around with OkLAB and OkLCH
+desc: All 16 million RGB colors arranged into one perceptually smooth 4K image with OkLAB, plus a generator for perceptually uniform palettes of any size.
 tags: [color-theory, algorithms, data-structures, rust, oklab, oklch, image-processing]
 kinds: [project]
+order: 2
 image: /all_colors.png
 ---
 
-I discovered oklab a while back in a desperate attempt to find a rainbow gradient that looked perceptually uniform. The standard ones you get from HSV or HSL just dont cut it. Here's a quick comparison:
+### The short version
 
-![rainbow comparison](https://www.bram.us/wordpress/wp-content/uploads/2022/02/oklab-vs-hsv.png)
+This started because I wanted a rainbow gradient that looked even, and the usual ones from HSV or HSL don't. That sent me down a rabbit hole into **OkLAB**, a color space built around how human eyes actually see, and the rabbit hole turned into two projects. The first lays out all 16 million RGB colors into a single 4K image where each color appears exactly once and the whole thing reads as one smooth gradient. The second builds perceptually even color palettes of any size, and ended up teaching me something I didn't know about the limits of color itself.
 
-The top gradient is from oklab (well actually oklch, but they are from the same family). The bottom one is from HSV (hue, saturation, value).
+![Every RGB color, exactly once, in one 4K image](/all_colors.png)
 
-As you can see, the oklab gradient looks much nicer. This is because our eyes perceive colors in a slightly biased way which is what perceptual color palettes are designed around.
+I posted this and fell into a great back-and-forth about how it works, [over on Reddit](https://www.reddit.com/r/proceduralgeneration/comments/1ughr8s/every_rgb_color_exactly_once/).
 
-Now one of the really hard things I wanted to try to tackle with this project is attempting to represent every single unique linear rgb color to a 4k x 4k image where every color is represented exactly once, and where all colors form a nice gradient. This turns out to be basically impossible. Even without the constraint of the image size or requiring each color to show up exactly once (and instead requiring at least one), many have tried and failed:
-http://www.kindofdoon.com/2020/06/visualizing-color-space-in-2d.html
+### Why OkLAB
 
-But despite this, I had a few ideas in mind. I won't bore you with the failed attempts and instead jump straight to what worked. Before all that, I'll show you what I came up with:
+A normal rainbow looks off because our eyes don't perceive color evenly. We're far more sensitive to differences in some regions, greens especially, than others, so a gradient that's mathematically even in HSV looks lumpy: some colors hog space and others flash past. OkLAB and its cousin OkLCH are built to correct for that bias, so even spacing in OkLAB looks even to a person. Everything in both projects measures color distance in OkLAB for that reason.
 
-![all linear rgb colors](/all_colors.png)
+### Every color, exactly once
 
-For this algorithm I basically took 64 parts of the RGB cube, mapped them to an 8x8 image, then swapped colors around until it minimized global differences computed in oklab color space. Then I did that again for 64x64 and then 512x512 and then finally 4096x4096. Because this is heirarchical, this does global AND local minimizing.
+The goal was to put all 16 million RGB colors into a 4096x4096 image, each one used exactly once, arranged so the image flows as a smooth gradient. This is close to impossible, and plenty of people have tried and come up short even without the "exactly once" rule. I'll skip my own dead ends and explain the version that worked.
 
-Now I wanted to take this one step further and generate a color palette of n entries that are perceptually uniform/distinct. This can be really useful for things like image compression, color quantization, data visualization, pixel art, and much more.
+The trick is that the numbers line up. The RGB cube holds 256x256x256 colors. Slice it into 4 along each axis and you get 64 smaller cubes, and 64 is exactly an 8x8 grid. So I lay those 64 cubes onto an 8x8 image and shuffle them around to make neighbors as perceptually close as possible, measuring against a blurred copy of the image in OkLAB. I start with a wide blur, which smooths things globally, and shrink it over time, which cleans up the local detail. Then I zoom in: each of those 64 cubes splits into 64 of its own, filling an 8x8 block inside whatever pixel its parent landed on, and the shuffling repeats. Four levels of that takes me from 8x8 to 64x64 to 512x512 to the full 4096x4096, and by the end every pixel is a single color. Because a cube's children never leave the spot their parent claimed, every one of the 16 million colors shows up exactly once. It's a permutation, not a paint job.
 
-I tried many different techniques and eventually landed on something I havent seen others try before. You can see what has be done/tried in the past here: https://medialab.github.io/iwanthue/theory/
+The part I didn't see coming was the clouds. Those swirling, fractal-looking patterns weren't designed, they just fell out of the process. Squashing a 3D cube of color down onto a flat image forces compromises, and it turns out this is what they look like. The four dark corners are a smaller quirk: I do the math with wrapping, then slide the whole image so pure black sits in the top-left.
 
-What I ended up doing is starting with every single one of the 16 million linear RGB colors mapped to the oklab color space, and then I simply removed the color that was closest to its two closest neighbors and wrote that down. I repeated this process until all colors were gone and I was left with this image (read left-to-right, top-to-bottom):
+### A palette that runs into a wall
 
-![palette generator image](/palette_generator.png)
+Then I wanted the opposite of all-the-colors: a small set of N colors that are as perceptually distinct from each other as possible. That's useful for color quantization, data visualization, pixel art, and similar things. The method I landed on, which I haven't seen anyone else try, is almost too simple. Drop all 16 million colors into OkLAB, then repeatedly find the color sitting closest to its two nearest neighbors and remove it, writing down the order it left in. Keep going until nothing's left, and that removal order is your answer: the colors that survive longest are the most distinct.
 
-Now the reason why it has all these bands is because the algorithm first started thinning the green area since there happen to be a lot of green/cyan colors in the linear rgb color space that are perceptually very very similar to human eyes. Same deal with magenta. This shows that with a large enough color palette (around a million colors), you physically cant get a perceptually uniform palette since its fundementally constained within the linear rgb space. There just arent enough linear rgb colors that can be equally spaced that way.
+![The palette generator's output, read left to right, top to bottom](/palette_generator.png)
 
-Anyway, heres what a uniform 256 palette looks like, using the color organizing from the other project:
+Reading the result told me something I didn't expect. The greens and cyans get thinned out first, then magenta, because linear RGB is packed with colors in those regions that look nearly identical to us. And if you push the palette big enough, around a million colors, you hit a wall: you physically can't make it perceptually even, because the linear RGB space just doesn't hold enough colors that are evenly spaced to the human eye. The algorithm doesn't only build a palette, it runs straight into a hard limit of the color space.
 
-![palette generator image](/palette_256_scaled.png)
+Here's a uniform 256-color palette it produced, laid out with the same method as the first project:
 
-And this is the LUT for that palette:
+![A perceptually uniform 256-color palette](/palette_256_scaled.png)
 
-![palette generator image](/palette_lut.png)
+And the lookup table for it, plus a graph of how the colors come out distributed:
 
-And a nice graph:
+![Lookup table for the 256-color palette](/palette_lut.png)
+![Distribution of the palette](/distribution.png)
 
-![graph](/distribution.png)
+### What I take from it
+
+Both halves of this started as "wouldn't it be nice to organize color perfectly," and both ran straight into the fact that color space has its own shape and its own limits. The all-colors image only works by accepting those strange emergent clouds, and the palette generator works right up until the point where the space itself runs out of room. I came in wanting a prettier gradient and left with a much better feel for why perfect color is impossible, which is somehow more satisfying than if it had just worked.

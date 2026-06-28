@@ -3,6 +3,7 @@ title: FRC Technical Documentation
 desc: A from-scratch teaching wiki that explains the team's hardest robotics systems from first principles, so the knowledge survives after I graduate.
 tags: [documentation, technical-writing, docusaurus, robotics, systems-engineering, knowledge-transfer]
 kinds: [project, leadership]
+order: 11
 image: /frc-docs.png
 ---
 

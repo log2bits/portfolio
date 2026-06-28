@@ -11,7 +11,9 @@ const experience = defineCollection({
 
     kinds: z.array(z.enum(["work", "project", "leadership"])).default(["project"]),
 
-    pinned: z.boolean().default(false),
+    // Lower = earlier on the home grid. Unset entries fall to the end.
+    order: z.number().default(9999),
+
     resume: z.boolean().default(false),
 
     // Forces which sections an entry appears in. If unset, placed by priority.

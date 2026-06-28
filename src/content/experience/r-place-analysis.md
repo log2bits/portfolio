@@ -4,6 +4,7 @@ desc: Mining Reddit's r/place pixel canvas with Python to surface untouched pixe
 image: /r-place-statistics.png
 tags: [python, data-analysis, visualization, large-datasets, statistics]
 kinds: [project]
+order: 6
 ---
 
 ### The short version

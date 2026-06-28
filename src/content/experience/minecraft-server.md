@@ -3,6 +3,7 @@ title: Game Server Infrastructure
 desc: Self-hosted Minecraft and Factorio servers on AWS EC2, with snapshot backups and a migration to cheaper ARM hardware.
 tags: [aws, linux, cloud-infrastructure, dns, docker, systems-configuration, devops]
 kinds: [project]
+order: 13
 image: /aws-server.png
 ---
 

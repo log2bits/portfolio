@@ -19,7 +19,7 @@ const kindLabel = {
 
 const sorted = [...all].sort(
   (a, b) =>
-    Number(b.data.pinned) - Number(a.data.pinned) ||
+    a.data.order - b.data.order ||
     a.data.title.localeCompare(b.data.title)
 );
 ---
@@ -31,8 +31,7 @@ const sorted = [...all].sort(
       <span>Logan MacAskill</span>
     </h1>
     <p class="desc">
-      CS @ UC Santa Cruz. Building toward graphics programming through
-      performance, simulation, and visual systems.
+      CS @ UC Santa Cruz. A foot in everything technical, eyes on graphics.
     </p>
   </header>
 

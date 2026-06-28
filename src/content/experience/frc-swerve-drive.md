@@ -4,6 +4,7 @@ desc: A coaxial swerve drive built from scratch, custom chassis to control theor
 image: /swerve-module.png
 tags: [java, robotics, control-theory, kinematics, odometry, simulation, state-estimation]
 kinds: [project, leadership]
+order: 4
 ---
 
 ### The short version

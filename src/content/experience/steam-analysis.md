@@ -3,6 +3,7 @@ title: Steam Game Analysis
 desc: Scraping 150,000+ Steam games to estimate the numbers Steam won't publish. Copies sold, total revenue, and which games beat expectations.
 tags: [python, web-scraping, data-analysis, machine-learning, modeling, large-datasets, statistics]
 kinds: [project]
+order: 10
 image: /steam-analysis.png
 ---
 
