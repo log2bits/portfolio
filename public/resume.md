@@ -62,10 +62,10 @@ Activities: UC Santa Cruz Game Design & Art Club
 - Arranged all 16.7 million RGB colors into one 4096x4096 image, each color used exactly once and reading as a smooth gradient, via a recursive cube-subdivision permutation optimized against a blurred copy in OKLab perceptual color space.
 - Built a palette generator producing perceptually uniform N-color palettes by iteratively removing the least-distinct color in OKLab, surfacing a hard limit of linear RGB near one million colors.
 
-**[FRC Swerve Drive](https://logan.macaskill.com/experience/frc-swerve-drive)**
+**[Coaxial Swerve Drive](https://logan.macaskill.com/experience/frc-swerve-drive)**
   : **Java, Control Theory, Computer Vision**
   : **2023 - 2024**
-- Built a coaxial swerve drivetrain from scratch (custom CNC chassis, electronics, ~2,000 lines of Java) with no prior team experience, leading an off-season team to a working prototype in one month, ~4 months ahead of schedule.
+- Built a coaxial swerve drivetrain from scratch for FRC (custom CNC chassis, electronics, ~2,000 lines of Java) with no prior team experience, leading an off-season team to a working prototype in one month, ~4 months ahead of schedule.
 - Ran per-module PID and feedforward at a 1 kHz control loop and derived current limits from robot mass and tire friction to maximize grip without slip or brownout, after self-teaching graduate-level control theory.
 - Fused wheel encoders, gyro, and AprilTag vision through a Kalman-filter pose estimator for sub-centimeter localization robust to wheel slip, and simulated the full robot (torque curves, inertia, battery, brownouts) on the exact production code.
 

@@ -1,6 +1,6 @@
 ---
-title: FRC Swerve Drive
-desc: A coaxial swerve drive built from scratch, custom chassis to control theory to a full physics simulation.
+title: Coaxial Swerve Drive
+desc: A coaxial swerve drive software built from scratch, custom chassis, control theory, and physics simulation.
 image: /swerve-module.png
 tags: [java, robotics, control-theory, kinematics, odometry, simulation, state-estimation]
 kinds: [project, leadership]
