@@ -3,7 +3,7 @@ layout: ../layouts/BaseLayout.astro
 title: About Me
 ---
 
-I'm a computer science student at UC Santa Cruz, going into my third year, and I'm from Los Altos. Over the past few years I've gone deep on a bunch of things: robotics, audio engineering, AI, 3D printing, game development, data science, and hardware. Graphics programming is the one that stuck to me like nothing else, and it's the direction I'm building toward now.
+I'm a computer science student at UC Santa Cruz, going into my third year, from Los Altos. Over the past few years I've gone deep on a bunch of things: robotics, audio engineering, AI, 3D printing, game development, data science, and hardware. Graphics programming is the one that stuck to me like nothing else, and it's the direction I'm building toward now.
 
 ### Why graphics
 
@@ -37,4 +37,4 @@ I've also gotten into audio and signal processing: EQ, calibration software, and
 
 **Summer 2023, Software Engineering Intern at Flickr.** Part-time internship after my junior year, focused on cloud compute optimization, performance tuning, and cost modeling in real production systems.
 
-**University (2023 to now).** Computer science major at UC Santa Cruz, going into my third year. Building performance-oriented, systems-level projects, deepening my focus on graphics and GPU programming, and working toward a rendering engineer role.
+**University (2024 to now).** Computer science major at UC Santa Cruz, going into my third year. Building performance-oriented, systems-level projects, deepening my focus on graphics and GPU programming, and working toward a rendering engineer role.

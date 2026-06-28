@@ -1,5 +1,5 @@
 ---
-title: Perceptual Color Space Experiments
+title: OKLab RGB Cube Bijection
 desc: All 16 million RGB colors arranged into one perceptually smooth 4K image with OkLAB, plus a generator for perceptually uniform palettes of any size.
 tags: [color-theory, algorithms, data-structures, rust, oklab, oklch, image-processing]
 kinds: [project]
