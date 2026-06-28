@@ -391,7 +391,16 @@ img:not(.icon) {
 /* Home: intro */
 
 .intro h1 {
+  margin-bottom: 0;
+}
+
+.intro-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 0.25rem;
+  /* When the nav can't fit beside the name, wrap above. */
+  flex-wrap: wrap-reverse;
 }
 
 .name-line {
@@ -441,6 +450,7 @@ img:not(.icon) {
   --pill-border: var(--surface1);
   display: inline-flex;
   align-items: center;
+  gap: 0.4em;
   background: transparent;
   border: 1px solid var(--pill-border);
   color: var(--subtext1);
@@ -452,7 +462,12 @@ img:not(.icon) {
   border-radius: var(--radius);
   white-space: nowrap;
   cursor: pointer;
+  text-decoration: none;
   transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.filter-btn svg {
+  flex-shrink: 0;
 }
 
 .filter-btn:hover {
