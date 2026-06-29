@@ -8,7 +8,7 @@
   : <span class="iconify" data-icon="tabler:brand-linkedin"></span> [linkedin.com/in/logan-macaskill-356190222](https://www.linkedin.com/in/logan-macaskill-356190222/)
   : <span class="iconify" data-icon="tabler:mail"></span> [logan@macaskill.com](mailto:logan@macaskill.com)
 
-Third-year CS student with an eye on real-time graphics and GPU programming (Rust + WebGPU, C++ + Vulkan), with two software engineering internships shipping and tuning production systems.
+Third-year CS student with two software engineering internships shipping and tuning production systems. Drawn to hard problems and making things fast without cutting corners, with projects spanning systems, graphics, and data in Rust, C++, and Python.
 
 ## Education
 
@@ -73,8 +73,8 @@ Activities: UC Santa Cruz Game Design & Art Club
 
 **Languages:** Rust, C++, Python, Java, TypeScript / JavaScript, PHP, GLSL / WGSL
 
-**Graphics & GPU:** Vulkan, WebGPU, Ray Tracing, Real-Time Rendering, Shaders, Level-of-Detail
-
 **Tools & Cloud:** Git, Linux, AWS (EC2, Lambda, Graviton), Docker, OpenCV, Godot, React / Next.js
 
 **Concepts:** Performance Optimization, GPU Data Structures, Control Theory, Computer Vision, Pose Estimation
+
+**Graphics & GPU:** Vulkan, WebGPU, Ray Tracing, Real-Time Rendering, Shaders, Level-of-Detail
