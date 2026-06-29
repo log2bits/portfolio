@@ -2,6 +2,8 @@
 title: Stormlight Quote Curator
 desc: A new-tab page that shows a random great line from the Stormlight Archive, curated out of the full series by a very picky LLM.
 tags: [python, llm, prompt-engineering, openai, batch-processing, data-pipeline]
+primaryTech: [Python, OpenAI]
+date: "2025"
 kinds: [project]
 order: 14
 image: /stormlight.png

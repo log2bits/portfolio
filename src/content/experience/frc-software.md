@@ -3,6 +3,8 @@ title: FRC Robot Software & Autonomy
 desc: Rebuilt our FRC robot's codebase into a modular state-machine architecture, then built dynamic autonomous and a shoot-while-moving auto-aim on top.
 image: /pathfinding.gif
 tags: [java, robotics, autonomous, state-machines, software-architecture, control-systems, leadership]
+primaryTech: [Java]
+date: "2022 - 2024"
 kinds: [project, leadership]
 order: 7
 ---

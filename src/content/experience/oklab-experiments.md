@@ -2,6 +2,8 @@
 title: OKLab RGB Cube Bijection
 desc: All 16 million RGB colors arranged into one perceptually smooth 4K image with OkLAB, plus a generator for perceptually uniform palettes of any size.
 tags: [color-theory, algorithms, data-structures, rust, oklab, oklch, image-processing]
+primaryTech: [Rust]
+date: "2026"
 kinds: [project]
 order: 2
 image: /all_colors.png

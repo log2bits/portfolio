@@ -3,6 +3,8 @@ title: r/place Analysis
 desc: Mining Reddit's r/place pixel canvas with Python to surface untouched pixels, hidden Among Us crewmates, and the real images under the noise.
 image: /r-place-statistics.png
 tags: [python, data-analysis, visualization, large-datasets, statistics]
+primaryTech: [Python]
+date: "2022"
 kinds: [project]
 order: 6
 ---
@@ -43,7 +45,7 @@ A great example of where averaging chaos pays off is the canadian flag:
 
 ![The Canada section of the canvas, averaged over time](/r-place-canada.png)
 
-Live, that area was a constant mess of edits and people trying to deface it. But averaged over time, the flag people were defending snaps right into focus, with the vandalism washed out. I posted this one and it took off, **over 45,000 upvotes**. It's the clearest proof of the whole idea: with enough data, plain averaging can recover what something was supposed to look like even when it was under constant attack.
+Live, that area was a constant mess of edits and people trying to deface it. But averaged over time, the flag people were defending snaps right into focus, with the vandalism washed out. I posted this one and it took off, [over 45,000 upvotes](https://www.reddit.com/r/place/comments/u10dpg/canada_looking_nice_when_you_average_the_pixels/). It's the clearest proof of the whole idea: with enough data, plain averaging can recover what something was supposed to look like even when it was under constant attack.
 
 ### What I take from it
 

@@ -637,6 +637,42 @@ img:not(.icon) {
 .card-kind.kind-project { color: var(--kind-project); }
 .card-kind.kind-leadership { color: var(--kind-leadership); }
 
+.card-tech {
+  display: inline-flex;
+  align-items: center;
+  font-style: italic;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+  background: transparent;
+  white-space: nowrap;
+  color: var(--subtext0);
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.card-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.card-date {
+  font-style: italic;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--subtext0);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* When a kind badge appears in a tag row, match the tag pill dimensions */
 .tags .card-kind {
   font-size: 0.8rem;

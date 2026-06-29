@@ -2,6 +2,8 @@
 title: SWE @ Flickr
 desc: Summer 2023. Tuned a production AWS Lambda pipeline to cut compute cost 92% and run 39% faster.
 tags: [python, aws, cloud-computing, performance-optimization, distributed-systems, cost-modeling, production-systems]
+primaryTech: [Python, AWS]
+date: Summer 2023
 kinds: [work]
 order: 5
 image: /flickr.png

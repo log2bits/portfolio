@@ -2,7 +2,9 @@
 title: "Testing the limits of Bitsy"
 desc: A 1-bit Bitsy puzzle game with 2,000+ lines of game data. Made by generating the Bitsy format directly with an algorithm.
 tags: [bitsy, puzzle, procedural-generation, creative-coding, 1-bit]
+primaryTech: [Bitsy]
 kinds: [project]
+date: "2025"
 order: 15
 image: /floodfill.png
 ---

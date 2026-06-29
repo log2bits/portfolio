@@ -2,6 +2,8 @@
 title: SWE @ SmugMug
 desc: Summer 2022. An 8-week full-stack internship on SmugMug's Growth team, shipping real production features in PHP, React, and Next.
 tags: [php, react, next.js, full-stack, production-systems, testing, qa, jira]
+primaryTech: [PHP, React]
+date: Summer 2022
 kinds: [work]
 order: 9
 image: /smugmug.png

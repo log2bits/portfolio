@@ -3,6 +3,8 @@ title: Crowd Surfers
 desc: A 2.5D pizza-delivery game from a 100-person student team. I made the case to rebuild the rendering system mid-project, then built the transparency shaders and lighting it enabled.
 image: /crowd-surfers-transparency.gif
 tags: [godot, game-dev, shaders, rendering, graphics, 3d]
+primaryTech: [Godot, GLSL]
+date: "2025 - 2026"
 kinds: [project, leadership]
 order: 1
 ---

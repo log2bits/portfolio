@@ -3,44 +3,57 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("experience");
-  return entries.map((e) => ({ params: { slug: e.slug }, props: { entry: e } }));
+	const entries = await getCollection("experience");
+	return entries.map((e) => ({
+		params: { slug: e.slug },
+		props: { entry: e },
+	}));
 }
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-const kindLabel = { work: "work", project: "project", leadership: "leadership" };
+const kindLabel = {
+	work: "work",
+	project: "project",
+	leadership: "leadership",
+};
 const kinds = entry.data.kinds ?? ["project"];
 ---
 
 <BaseLayout title={entry.data.title} pageTitle={entry.data.title}>
-  <header>
-    <p class="desc">{entry.data.desc}</p>
+	<header>
+		{entry.data.date && <p class="desc">{entry.data.date}</p>}
 
-    <hr />
+		<hr />
 
-    <ul class="tags">
-      {kinds.map((k) => (
-        <li class={`card-kind kind-${k}`}>{kindLabel[k]}</li>
-      ))}
-      {entry.data.tags?.map((t) => <li class="tag">{t}</li>)}
-    </ul>
+		<ul class="tags">
+			{
+				kinds.map((k) => (
+					<li class={`card-kind kind-${k}`}>{kindLabel[k]}</li>
+				))
+			}
+			{entry.data.tags?.map((t) => <li class="tag">{t}</li>)}
+		</ul>
 
-    {entry.data.links && (
-      <p>
-        {entry.data.links.map((l) => (
-          <>
-            <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>{" "}
-          </>
-        ))}
-      </p>
-    )}
-  </header>
+		{
+			entry.data.links && (
+				<p>
+					{entry.data.links.map((l) => (
+						<>
+							<a href={l.href} target="_blank" rel="noreferrer">
+								{l.label}
+							</a>{" "}
+						</>
+					))}
+				</p>
+			)
+		}
+	</header>
 
-  <hr>
+	<hr />
 
-  <section>
-    <Content />
-  </section>
+	<section>
+		<Content />
+	</section>
 </BaseLayout>

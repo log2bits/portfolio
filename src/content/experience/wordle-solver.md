@@ -2,6 +2,8 @@
 title: Wordle Solver
 desc: A Python Wordle solver that averages 3.428 guesses, basically the theoretical best, and the same engine also solves Nerdle and Primel.
 tags: [python, algorithms, information-theory, probability, optimization, game-solving]
+primaryTech: [Python]
+date: "2022"
 kinds: [project]
 order: 12
 image: /wordle.webp

@@ -2,6 +2,8 @@
 title: Computer Vision w/ Robotics
 desc: Three seasons of FRC robot vision, from hand-written OpenCV to local AI, then the geometry of finding objects and the robot itself in 3D.
 tags: [python, java, computer-vision, opencv, robotics, pose-estimation, apriltags]
+primaryTech: [Python, OpenCV]
+date: "2020 - 2024"
 kinds: [project, leadership]
 order: 8
 image: /computer-vision.webp

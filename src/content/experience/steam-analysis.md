@@ -2,6 +2,8 @@
 title: Steam Game Analysis
 desc: Scraping 150,000+ Steam games to estimate the numbers Steam won't publish. Copies sold, total revenue, and which games beat expectations.
 tags: [python, web-scraping, data-analysis, machine-learning, modeling, large-datasets, statistics]
+primaryTech: [Python]
+date: "2022"
 kinds: [project]
 order: 10
 image: /steam-analysis.png
@@ -11,7 +13,7 @@ image: /steam-analysis.png
 
 Steam is the biggest place to buy PC games, and it sits on a mountain of data about what sells. The catch is that almost none of it is public, and the numbers you find online contradict each other. So I scraped it myself. **150,000+ games**, pulled one slow request at a time, then used that data to estimate the stuff Steam doesn't tell you: how many people are on Steam, how many copies each game sold, and how much money it all made.
 
-A few numbers that fell out, all my own estimates: roughly **1.49 billion** Steam accounts, about $20.89 spent per account, and somewhere around **$3.69 billion** that Steam has made from its cut of sales. Then I built a model to rank every game by whether it made more or less money than you'd expect. [Full ranked list here.](https://bit.ly/steam-game-performance)
+A few numbers that fell out, all my own estimates: roughly **1.49 billion** Steam accounts, about $20.89 spent per account, and somewhere around **$3.69 billion** that Steam has made from its cut of sales. Then I built a model to rank every game by whether it made more or less money than you'd expect. [Full ranked list here.](https://raw.githubusercontent.com/ImWolverine/steam-game-performance/main/steam-game-performance.txt)
 
 ### Getting the data the hard way
 

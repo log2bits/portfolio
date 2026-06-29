@@ -3,6 +3,8 @@ title: Coaxial Swerve Drive
 desc: A coaxial swerve drive software built from scratch, custom chassis, control theory, and physics simulation.
 image: /swerve-module.png
 tags: [java, robotics, control-theory, kinematics, odometry, simulation, state-estimation]
+primaryTech: [Java]
+date: "2023 - 2024"
 kinds: [project, leadership]
 order: 4
 ---

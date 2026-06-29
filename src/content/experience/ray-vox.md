@@ -1,7 +1,9 @@
 ---
 title: ray-vox
-desc: (WIP) A from-scratch ray-traced voxel renderer in Rust and WebGPU, built on a custom sparse-voxel data structure that beats zstd on size while staying directly renderable.
+desc: (WIP) A from-scratch ray-traced voxel engine in Rust and WebGPU, built on a custom sparse-voxel data structure that beats zstd on size while staying directly renderable.
 tags: [rust, webgpu, graphics, rendering, voxels, data-structures, gpu]
+primaryTech: [Rust, WebGPU]
+date: "2026 - Present"
 kinds: [project]
 image: /rvox-compression.png
 order: 0
@@ -9,7 +11,7 @@ order: 0
 
 ### The short version
 
-ray-vox is a voxel renderer I'm building from scratch in Rust and WebGPU, where everything is ray traced, no rasterization. It's a work in progress, and the part that's built so far is the foundation: the data structure and the architecture the renderer will run on. That's the piece I most wanted to get right, because in a voxel engine the data structure decides almost everything about how fast and how big the whole thing ends up.
+ray-vox is a voxel engine I'm building from scratch in Rust and WebGPU, where everything is ray traced, no rasterization. It's a work in progress, and the part that's built so far is the foundation: the data structure and the architecture the renderer will run on. That's the piece I most wanted to get right, because in a voxel engine the data structure decides almost everything about how fast and how big the whole thing ends up.
 
 Here's the result that makes me happy so far. I took the castle model from Teardown, an 84 MB voxel file, and loaded it into my format. It came out to 16 MB. For comparison, zstd, one of the best general-purpose compressors there is, only gets that same file down to about 19 MB at its most aggressive setting, and 57 MB at its default. So mine is smaller than zstd at any level, and that's the less interesting half. A zstd file is a dead blob you have to unpack before you can do anything with it. My 16 MB is the live structure the GPU walks through to draw the scene, with levels of detail built in all the way up. [Full repo, and a very deep README, here.](https://github.com/log2bits/ray-vox)
 

@@ -2,6 +2,8 @@
 title: Continuous Cut
 desc: A 2-bit Fruit-Ninja-meets-Vampire-Survivors slasher, built in Godot with Jack Seales for a class jam.
 tags: [godot, game-dev, 2d, pixel-art, game-design, shaders, graphics]
+primaryTech: [Godot, GLSL]
+date: "2026"
 kinds: [project]
 order: 3
 image: /continuous-cut.png

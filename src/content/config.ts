@@ -21,6 +21,12 @@ const experience = defineCollection({
 
     tags: z.array(z.string()).default([]),
 
+    // Primary language(s) / framework(s) shown as a neutral bubble on the home card.
+    primaryTech: z.array(z.string()).default([]),
+
+    // Free-form date string shown on the home card (e.g. "Summer 2023", "2024 – present").
+    date: z.string().optional(),
+
     links: z
       .array(
         z.object({
