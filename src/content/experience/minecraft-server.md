@@ -5,7 +5,7 @@ tags: [aws, linux, cloud-infrastructure, dns, docker, systems-configuration, dev
 primaryTech: [AWS, Linux]
 date: "2020 - Present"
 kinds: [project]
-order: 13
+order: 3
 image: /aws-server.png
 ---
 

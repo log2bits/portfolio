@@ -5,7 +5,7 @@ tags: [godot, game-dev, 2d, pixel-art, game-design, shaders, graphics]
 primaryTech: [Godot, GLSL]
 date: "2026"
 kinds: [project]
-order: 3
+order: 13
 image: /continuous-cut.png
 ---
 
