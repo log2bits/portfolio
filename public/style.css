@@ -279,13 +279,48 @@ pre.astro-code .line span {
   background-color: var(--surface0);
   color: var(--text);
 
-  padding: 0.15em 0.4em;
+  padding: 0.05em 0.35em;
   border: 1px solid var(--surface1);
-  border-radius: var(--radius);
+  border-radius: 0.25rem;
 
   font-family:
     "Maple Mono",
     monospace;
+  font-size: 0.9em;
+}
+
+/* Tables — allowed to escape the main text column when they need to. */
+table {
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  border-collapse: collapse;
+  border: 1px solid var(--surface1);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 1rem auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--surface1);
+  text-align: left;
+}
+
+thead {
+  background: var(--mantle);
+}
+
+th {
+  color: var(--text);
+  font-weight: 700;
+}
+
+tbody tr:nth-child(even) {
+  background: color-mix(in oklab, var(--mantle) 50%, transparent);
 }
 
 .sheet-embed {
