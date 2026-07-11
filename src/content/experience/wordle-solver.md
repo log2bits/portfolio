@@ -9,7 +9,7 @@ order: 12
 image: /images/wordle.webp
 ---
 
-### The short version
+### TL;DR
 
 This one started after watching [3Blue1Brown's video on solving Wordle with information theory](https://www.youtube.com/watch?v=v68zYyaEmEA). I wanted to build my own version, then push it as far as it would go.
 
@@ -47,6 +47,6 @@ The nice thing about building it around "guesses, answers, and color feedback" i
 
 So by swapping the word lists, the same engine solves Nerdle, where the answers are math equations like 52-34=18, and Primel, where they're prime numbers, each with its own best opener. The feedback logic even handles answers of different lengths. One idea, three games, plus the evil twin.
 
-### What I like about it
+### Looking back
 
 The fun of this one was that the cheap, simple version basically tied the expensive perfect one. You don't need to look ten moves ahead. You need one clean idea, measuring how much each guess tells you, and then the rest is just running it carefully. And once you have that idea, it doesn't only solve Wordle. It solves the whole family.

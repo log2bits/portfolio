@@ -9,7 +9,7 @@ kinds: [project]
 order: 6
 ---
 
-### The short version
+### TL;DR
 
 r/place was a giant shared canvas on Reddit where millions of people placed one colored pixel at a time, with no one in charge, constantly painting over each other. I took the full history of every pixel placement and ran it through Python to pull real structure out of the chaos. The best part: when you average the canvas over time, the constant vandalism smooths away and the picture people were trying to make shows back up. The version I made of the Canadian flag doing this hit **45,000+ upvotes** on Reddit.
 
@@ -47,6 +47,6 @@ A great example of where averaging chaos pays off is the canadian flag:
 
 Live, that area was a constant mess of edits and people trying to deface it. But averaged over time, the flag people were defending snaps right into focus, with the vandalism washed out. I posted this one and it took off, [over 45,000 upvotes](https://www.reddit.com/r/place/comments/u10dpg/canada_looking_nice_when_you_average_the_pixels/). It's the clearest proof of the whole idea: with enough data, plain averaging can recover what something was supposed to look like even when it was under constant attack.
 
-### What I take from it
+### Looking back
 
 The thing I like about this project is how simple the winning move was. No fancy model, just counting how often pixels change and averaging them over time, run carefully over a dataset big enough that you have to think about how you touch it. And it pulled out things nobody could see live: the pixels that never moved, the hidden figures, the real images under the noise. That's the whole lesson for me. A lot of structure is sitting in messy real-world data if you pick the right simple thing to measure.

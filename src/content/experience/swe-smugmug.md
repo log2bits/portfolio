@@ -9,7 +9,7 @@ order: 9
 image: /images/smugmug.png
 ---
 
-### The short version
+### TL;DR
 
 I spent 8 weeks in the summer of 2022 as a software engineering intern on SmugMug's **Growth team**, working across the stack in PHP, React, and Next. It was my first time inside a large, mature production codebase, the kind real customers are using while you're editing it.
 
@@ -42,7 +42,7 @@ The work itself landed in a few different places.
 
 **The PHP 8.1 upgrade.** On the backend, I worked on changes supporting SmugMug's move to PHP 8.1 and wrote my own unit tests for them. This one had real stakes. It was on the critical path, so if my piece wasn't done on time it would have held up the release. It also turned out to be a lot more involved than we first expected, which is a pattern I kept seeing: the "simple" task that quietly balloons once you're deep in a real codebase. I paired with one of the backend engineers, Cabbey, to get it across the line.
 
-### What I took away
+### Looking back
 
 The through-line for me was that careful beats clever in a codebase like this. Writing the code was rarely the hard part. The skill was making changes I could be confident in: testing them, pushing them through review, and understanding how my one piece fit into a system I didn't build. That's the habit I kept, and it's how I approach engineering now.
 

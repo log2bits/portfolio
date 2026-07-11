@@ -9,7 +9,7 @@ order: 14
 image: /images/stormlight.png
 ---
 
-### The short version
+### TL;DR
 
 I wanted my browser's new-tab page to show a random great quote from the Stormlight Archive, the Brandon Sanderson series. Sounds like a five-minute project. It wasn't. Showing a quote on a page is easy. The hard part, and the whole point, was getting a computer to pick which lines are worth showing out of thousands of pages of text. That turned into a prompt-engineering problem: teaching a small LLM to have taste, and to throw out almost everything.
 
@@ -40,6 +40,6 @@ These books are massive, so once you chop them into chunks you're looking at tho
 
 The script handles the tedious parts. It splits each book into roughly 1,000-word chunks, with a little overlap so a quote can't get sliced in half at a boundary, cancels any old batches still running so they don't pile up, uploads everything, waits, and merges all the results into a single file the new-tab page reads from.
 
-### What I take from it
+### Looking back
 
 The fun of this one was realizing it wasn't really a coding problem, it was a taste problem. I spent almost no time on the new-tab page and almost all of it convincing a people-pleasing model to be a harsh critic. That's been the pattern with most LLM work I've done since: the hard part usually isn't getting the model to do something, it's getting it to stop doing too much.

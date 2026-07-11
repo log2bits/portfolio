@@ -9,7 +9,7 @@ order: 8
 image: /images/computer-vision.webp
 ---
 
-### The short version
+### TL;DR
 
 Three seasons of vision for our FRC robot. I started as the computer vision lead, and the work kept evolving as the problems got harder. We went from hand-writing image-processing algorithms in **OpenCV**, to running a local AI model on dedicated hardware, to a different problem entirely: once you can see the object, where is it in 3D, and where are we on the field? The targets changed every year too, from round balls to cones and cubes to rings.
 
@@ -35,6 +35,6 @@ None of the pose math works without good camera calibration. Every camera distor
 
 Some of this vision work, the cone-and-cube OpenCV detection and the AprilTag calibration code, is [on GitHub](https://github.com/log2bits/RobotX-Vision-2023).
 
-### What I take from it
+### Looking back
 
 The fun of this one was watching the question change under me. It started as "can we even see the game piece," became "okay, but where exactly is it," and ended as "and where are we." Each answer just exposed the next problem, and the tools changed completely along the way, from my own OpenCV code, to a trained model, to pure geometry. Leading that across three seasons taught me both the vision side and how to hand it off so it didn't all live in my head.

@@ -9,7 +9,7 @@ kinds: [project, leadership]
 order: 4
 ---
 
-### The short version
+### TL;DR
 
 This is the biggest project I've taken on. A coaxial swerve drive built from scratch, every part of it: the custom chassis (I did the CNC, wiring, and electronics), the modules, and the entire software stack. Swerve is the most capable and the most complicated drivetrain in FRC, and our team had never attempted it. I led an off-season team, taught the workshops, and had a working prototype in a month, about four months ahead of what we expected. Roughly $4,000 of hardware and around 2,000 lines of code.
 
@@ -43,6 +43,6 @@ A swerve robot is useless for autonomous if it doesn't know where it is. I fuse 
 
 This is my favorite part. The entire robot can run in a physics simulation, modeled all the way down to the motors: real torque curves, wheel inertia, battery voltage and current draw, even brownouts. Because the simulation goes that deep, the exact same code that drives the real robot drives the simulated one, with no changes. That's a bigger deal than it sounds. Time on the physical robot is the biggest bottleneck on any FRC team, and this let us write and tune code from a laptop, anywhere, long before the robot was even built.
 
-### What I take from it
+### Looking back
 
 This was me dragging the team into modern FRC. I showed up with a drivetrain they'd never tried and control theory they'd never used, learned all of it from scratch, and then taught it to the team. The deep writeup, with all the math and the code, lives in the wiki I built for exactly that reason: [the technical paper](https://6962-technical-wiki.vercel.app/paper). The drivetrain code itself is [on GitHub](https://github.com/team6962/Code-2024).

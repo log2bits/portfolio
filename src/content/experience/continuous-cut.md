@@ -9,7 +9,7 @@ order: 13
 image: /images/continuous-cut.png
 ---
 
-### The short version
+### TL;DR
 
 Continuous Cut is a small, relaxing slasher we built in **Godot** for a class jam. We started from two prompt words, "cut" and "spin," and ended up with something like Fruit Ninja crossed with Vampire Survivors. Enemies come at you, you cut them down. We had a pretty limited amount of time to work on the project, so the game isnt all that polished, but its playable and its fun!
 

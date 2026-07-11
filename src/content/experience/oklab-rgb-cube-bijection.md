@@ -9,7 +9,7 @@ order: 2
 image: /images/all_colors.png
 ---
 
-### The short version
+### TL;DR
 
 This started because I wanted a rainbow gradient that looked even, and the usual ones from HSV or HSL don't. That sent me down a rabbit hole into **OkLAB**, a color space built around how human eyes actually see, and the rabbit hole turned into two projects. The first lays out all 16 million RGB colors into a single 4K image where each color appears exactly once and the whole thing reads as one smooth gradient. The second builds perceptually even color palettes of any size, and ended up teaching me something I didn't know about the limits of color itself.
 
@@ -46,6 +46,6 @@ And the lookup table for it, plus a graph of how the colors come out distributed
 ![Lookup table for the 256-color palette](/images/palette_lut.png)
 ![Distribution of the palette](/images/distribution.png)
 
-### What I take from it
+### Looking back
 
 Both halves of this started as "wouldn't it be nice to organize color perfectly," and both ran straight into the fact that color space has its own shape and its own limits. The all-colors image only works by accepting those strange emergent clouds, and the palette generator works right up until the point where the space itself runs out of room. I came in wanting a prettier gradient and left with a much better feel for why perfect color is impossible, which is somehow more satisfying than if it had just worked.

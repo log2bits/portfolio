@@ -9,7 +9,7 @@ kinds: [project, leadership]
 order: 7
 ---
 
-### The short version
+### TL;DR
 
 By my second season I was the programming lead, doing something like 80 to 90% of the team's programming, and the codebase I inherited was a mess. Nobody on the team had heard of a state machine. So I tore it down and rebuilt it into clean, modular subsystems that coordinate through a central state machine, the kind of structure where people can work on one part without breaking the others. That foundation is what let me build the stuff I'm proud of: autonomous routines that plan their own paths during the match, and an auto-aim that does the projectile math to shoot on the move. Code on GitHub: [2024](https://github.com/team6962/Code-2024), [2023](https://github.com/team6962/Code-2023).
 
@@ -29,6 +29,6 @@ Doing it dynamically is the whole point, because it plays well with any alliance
 
 This is the flashy one. For the ring game (Crescendo), the robot rotates its whole body to aim at the goal, and the software handles the rest. Given where the goal is and where the robot is, it solves the projectile-motion equations to find the exact flywheel speed and launch angle to land the shot. The hard part is that the robot is usually moving, so it also factors in its own velocity, aiming at where it needs to be instead of where it currently is, so it can shoot accurately without stopping first. All of that runs off the odometry from the drivetrain, and it updates every loop.
 
-### What it adds up to
+### Looking back
 
 Across two seasons I took this team from a tangled codebase with no real architecture to a robot that plans its own autonomous and aims itself while moving. There were smaller wins along the way too, like using a new IMU to auto-balance the robot on the charge-station platform in the 2023 game. None of this was the team's idea of normal, and that was the point. I wanted to leave behind a codebase and a set of capabilities the team could keep building on after I graduated.

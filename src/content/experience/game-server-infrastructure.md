@@ -9,7 +9,7 @@ order: 3
 image: /images/aws-server.png
 ---
 
-### The short version
+### TL;DR
 
 I run a self-managed game server on **AWS EC2** that hosts a handful of Minecraft worlds and some Factorio games for me and my friends. The point wasn't really the games. It's the most hands-on way I've found to learn cloud stuff for real, and it's where I picked up AWS, SSH, and how Linux servers work.
 
@@ -37,6 +37,6 @@ Underneath the infrastructure, the servers themselves take real fiddling, especi
 
 The part I had the most fun with is the Discord integration. In-game chat is synced to a Discord server through a plugin and a bot, so messages flow both ways. You can talk to people in the game from Discord and the other way around, and roles and permissions stay lined up across both. Getting that working meant wiring up authentication and passing events back and forth between the game and Discord without things getting dropped or duplicated.
 
-### What I take from it
+### Looking back
 
 This server is the closest thing I've had to a real ops job. It's a live system with actual users, so I can't just break it and walk away. I have to keep it up, back it up, grow it when more people show up, and sometimes re-architect it, like the ARM move, without anyone losing their world. Most of what I know about AWS, SSH, and running Linux in the cloud, I learned right here, by keeping this thing alive.

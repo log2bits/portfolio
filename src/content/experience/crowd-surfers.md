@@ -9,7 +9,7 @@ kinds: [project, leadership]
 order: 1
 ---
 
-### The short version
+### TL;DR
 
 Crowd Surfers is a game about Slip, a pizza delivery skater dodging crowds and buildings in a dense, noisy city to get pizzas to the door before their game-show-host boss fires them. It was built by a fully student-run club of more than 100 people at UC Santa Cruz, and it's [playable on itch.io](https://game-design-art-collab.itch.io/crowd-surfers).
 
@@ -43,6 +43,6 @@ The transparency itself is dithered rather than a smooth blend, because our art 
 
 A bunch of things got easier, or became possible at all, only after going to true 3D. Real shadows, actual light sources, and proper environment lighting, none of which fit the old fake-3D setup. I also hooked the player animations into the controller, and added the feel-good camera work: a screen shake when you crash, the field of view widening as you pick up speed, and the camera leaning ahead of you as you move. All of those are smoothed with lerping so they feel nice instead of jerky.
 
-### What I take from it
+### Looking back
 
 The shader was the hardest code, but the prototype was the most important thing I made. The real lesson was about technical leadership: when you think a project is heading somewhere painful, opinions don't move a big team, a working demo does. Rebuilding that level to prove out the new system convinced people far better than any argument could have, and it's the part of this project I'm proudest of. Skating behind a building and watching it quietly fade is a close second.

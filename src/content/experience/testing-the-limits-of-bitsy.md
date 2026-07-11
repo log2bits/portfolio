@@ -9,7 +9,7 @@ order: 15
 image: /images/floodfill.png
 ---
 
-### The short version
+### TL;DR
 
 I built a puzzle game in **Bitsy**, a tiny engine for making little browser games out of 8x8 sprites and barely any programming. The puzzle is simple to describe: fill every tile on a grid without ever crossing your own path. Building the levels for that by hand would've been brutal in an engine this limited, so instead I wrote a script to generate the game data directly. The finished game is over 2,000 lines of Bitsy data.
 
@@ -49,6 +49,6 @@ Here's the fun part. Filling a grid without ever crossing your own path is a **H
 
 The art was the easy part this time. The logic was the monster. Bitsy data for something like this is super repetitive, one chunk per cell, so instead of writing all of it by hand I made a small script to generate the repetitive parts and imported them straight in. On top of that I needed a per-level counter tracking how many tiles were filled, plus logic to only move to the next level once every tile was covered. The rest was close to how Ouroboros works, which did not make it easy. It took me hours just to get the logic behaving, but when it finally clicked it was so satisfying. I still can't quite believe this runs in plain Bitsy. The finished game is over 2,000 lines of Bitsy data.
 
-### Where it stands
+### Looking back
 
 The one thing I'd love to fix: when you mess up, the whole game resets instead of just the level. I couldn't find a clean way to do it, and it'd take a lot more complicated logic to pull off in Bitsy. Past that, and maybe designing more levels, I'm kind of out of things to add. It's already in a good spot, and I'm proud of how it came out.

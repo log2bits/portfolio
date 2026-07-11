@@ -9,7 +9,7 @@ order: 10
 image: /images/steam-analysis.png
 ---
 
-### The short version
+### TL;DR
 
 Steam is the biggest place to buy PC games, and it sits on a mountain of data about what sells. The catch is that almost none of it is public, and the numbers you find online contradict each other. So I scraped it myself. **150,000+ games**, pulled one slow request at a time, then used that data to estimate the stuff Steam doesn't tell you: how many people are on Steam, how many copies each game sold, and how much money it all made.
 
@@ -47,6 +47,6 @@ With the model done, I ranked all 150,000 games by how far they beat or missed t
 
 The biggest overperformers are almost all hype games. Cyberpunk 2077 tops the list at around +21,923%, with Battlefield 2042, Among Us, and Five Nights at Freddy's not far down. Which makes sense once you think about what the model can and can't see. It knows a game's price, genre, and reviews, but it has no idea a game went viral or got caught up in a trend. So the games that overperform their stats are exactly the ones that blew up for reasons no feature could capture. The full ranked list is [here](https://bit.ly/steam-game-performance).
 
-### What I take from it
+### Looking back
 
 The part I like about this one is how much had to be built before any "analysis" could happen. The data didn't exist, so I scraped it. The sales numbers didn't exist, so I estimated them from a chain of smaller facts. And the clean ways to score performance didn't work, so I kept going until something did. Most of the project was getting messy, missing, real-world data into a shape where a question could even be asked. That's the part that felt the most like the actual job.

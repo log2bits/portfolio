@@ -9,7 +9,7 @@ order: 5
 image: /images/flickr.png
 ---
 
-### The short version
+### TL;DR
 
 The summer I interned at Flickr, I spent most of it tuning one AWS Lambda workflow until it ran faster and cost a fraction of what it used to. Same jobs, same output, way less money.
 
@@ -92,6 +92,6 @@ After working through all of it, the config that won was:
 
 That setting gave the lowest cost per job while keeping throughput high and tail latency steady. Next to where Wolverine started, it cut compute cost by 91.79% and pushed performance up 38.5%.
 
-### What it taught me
+### Looking back
 
 The fun part is that the obvious moves were both wrong. Just crank the RAM, or just add more threads, and you miss it in either direction. The cheapest config and the fastest config landed close to the same place, but I only found that spot because I had real measurements instead of guesses. Cloud pricing tucks a lot of real hardware behavior behind two little sliders, and the only way to find the right setting is to go look.

@@ -9,7 +9,7 @@ order: 11
 image: /images/frc-docs.png
 ---
 
-### The short version
+### TL;DR
 
 I was doing most of the programming for our FRC team, which meant when I graduated, a huge amount of knowledge was going to walk out the door with me. So I built a wiki that teaches the team's hardest systems from first principles: control theory, swerve drive, sensors, telemetry, and simulation. It's a real website, built so people can learn from it years from now, not a pile of reference notes. [You can read it here.](https://6962-technical-wiki.vercel.app/paper)
 
@@ -33,6 +33,6 @@ The whole thing teaches from the ground up, with a plain example before any math
 
 This wiki turned into the backbone of how I passed things down. It's the basis for the workshops I taught new programmers, the onboarding for new members, and my senior capstone, which was a whole course on robotics programming and electronics. A lot of my last season went into mentoring Arjun, the next programming lead, so the team wouldn't have to relearn everything from scratch the moment I left.
 
-### What I take from it
+### Looking back
 
 Writing this taught me as much as building any of the robots did, because you can't explain control theory clearly until you really understand it. And it's the piece of my work that outlasts me. The robots get torn down and rebuilt every year, but the knowledge in here sticks around for whoever comes next.

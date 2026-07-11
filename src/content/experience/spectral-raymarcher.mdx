@@ -1,6 +1,6 @@
 ---
 title: Spectral Raymarcher
-desc: A physically based diamond in a single GLSL shader, splitting white light into 256 wavelengths at one sample per pixel with no denoising, by hiding the noise in an ordered dither.
+desc: A physically based diamond in a single GLSL shader, splitting white light into 65,536 wavelengths from just two samples per pixel with no denoising, by hiding the noise in an ordered dither.
 tags: [graphics, shaders, glsl, raytracing, rendering, spectral, dispersion, dithering, color-theory, gpu]
 primaryTech: [GLSL]
 date: "2026"
@@ -11,9 +11,9 @@ image: /images/spectral-gem.png
 
 import ShaderCanvas from "../../components/ShaderCanvas.astro";
 
-### The short version
+### TL;DR
 
-This is a spinning diamond that renders one wavelength of light per pixel and still comes out looking like a full-color gem. It's one GLSL shader, it runs in real time, and it never averages anything, not across frames, not across neighboring pixels. That last part is the whole trick, and it's what most of this writeup is about.
+This is an extremely performant render of a physically accurate spinning diamond icosahedron. Its able to be so performant because it traces just two wavelengths of light per pixel, but maintains 65,536 distinct wavelength combinations across the image. It's one GLSL shader, it runs in real time, and it never averages anything, not across frames, not across neighboring pixels.
 
 <figure class="shader-figure">
 	<ShaderCanvas poster="/images/spectral-gem.png" timeOffset={10} />
@@ -34,7 +34,7 @@ Every pixel pulls a value from a 16 by 16 Bayer dither pattern, so there are 256
 
 That's the whole idea. A normal spectral renderer converges over time; this one is already converged in space, because the dither guarantees every little neighborhood covers the spectrum evenly. It'll run at one sample per pixel, deterministic and with no waiting, and even there you get 256 wavelengths spread across the image.
 
-But it looks best at two, which is what the demo uses. Here's the part I like. The second sample isn't just a second wavelength, it's offset by the same 256-value dither, so the two samples in a pixel land on a different pair of wavelengths than the two in the pixel next door. Across the screen that's 256x256, about 65,000 distinct wavelength combinations, and each pixel only ever traces two of them. The whites clean right up. It's cheap because the hard part isn't being computed, it's being arranged.
+But it looks best at two, which is what the demo uses. Here's the part I like. The second sample isn't just a second wavelength, it's offset by the same 256-value dither, so the two samples in a pixel land on a different pair of wavelengths than the two in the pixel next door. Across the screen that's 256x256, 65,536 distinct wavelengths, and each pixel only ever traces two of them. The whites clean right up. It's cheap because the hard part isn't being computed, it's being arranged.
 
 ### The shape is just planes
 
@@ -51,6 +51,18 @@ Inside the stone, every time a ray hits a facet it splits. Some of the light bou
 This one doesn't flip a coin. At each facet it does both. It takes the fraction of light that escapes right then, sends it out to sample whatever's around it, and adds that in. Then it keeps the fraction that stayed inside, follows only that reflected ray onward, and does the same thing at the next facet. It carries a running number for how much light is still bouncing around, and every bounce peels off the part that leaks out.
 
 The reason this works in one ray instead of a branching tree is that the escaping light doesn't need to be traced, it just leaves and reads whatever's out there. Only the reflected part keeps going, and that's a single chain. So you get the exact energy split at every bounce with zero noise and no coin flips to average out, using the real dielectric Fresnel equations rather than the cheap approximation everyone reaches for.
+
+### What makes it fast
+
+None of the individual tricks are exotic. Stacked up, they're the difference between a render that crawls and one that runs live in a browser tab.
+
+The unit of work is a plane test. Finding where a ray hits the stone means checking it against all 20 faces, which the code does as four base directions flipped eight ways, so 32 tests per intersection. Every bounce inside is another 32. Left unchecked, 16 bounces times two wavelengths is over a thousand plane tests per pixel, and at a few million pixels that stops being real time in a hurry.
+
+So it doesn't leave it unchecked. Each bounce keeps a running tally of how much light is still trapped inside, peels off the part that escapes, and the moment the trapped fraction drops below about four percent it quits. A diamond dumps most of its light out fast, so on a real frame most rays finish in a handful of bounces, not sixteen. There's a hard cap at 16 as a backstop, but that energy cutoff is what actually keeps the loop short.
+
+And it never reaches for memory it doesn't have. No accumulation buffer, no history from last frame, no denoise pass peeking at neighboring pixels. Every pixel is a self-contained calculation that starts and finishes inside one shader invocation, which is exactly what a GPU wants. Millions of them run at once with nothing to coordinate.
+
+The two knobs are wavelengths per pixel and that bounce cutoff. Drop to one wavelength and you halve the work, the whites get a touch noisier and nothing else changes. That's the payoff of building quality in across space instead of over time: you can trade sharpness for speed and the picture degrades gracefully instead of dissolving into static.
 
 ### Real prism colors
 
@@ -76,7 +88,7 @@ The gem spins on its own on three axes at once, at speeds set by powers of the g
 
 All the tracing happens in the gem's own frame. Instead of rotating the stone, the shader rotates the camera ray and the light into the stone's coordinates once, up front, and traces against a gem that's sitting still. Small thing, but it means the spin costs almost nothing.
 
-### What I take from it
+### Looking back
 
 This one turned into a long argument with myself about noise. Every fancy feature I wanted, dispersion, internal reflections, curved shapes, was really a question of where the noise was allowed to live. The answer I kept landing on: if you refuse to average over time or space, the noise has to go somewhere, so the whole craft is arranging things so it lands somewhere you can't see. The Bayer dither hides it in a pattern your eye blends away. The deterministic Fresnel takes it out of the light bounces entirely. And the flat faces sidestep the one place, curved focusing, where it can't be hidden at all.
 

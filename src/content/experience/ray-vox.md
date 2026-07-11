@@ -9,7 +9,7 @@ image: /images/rvox-heatmap.png
 order: 0
 ---
 
-### The short version
+### TL;DR
 
 ray-vox is a voxel engine I built from scratch in Rust and WebGPU, where everything is ray traced, no rasterization. It's at a good stopping point now. The data structure that holds the world, the importer that fills it, and a WGSL shader that traces the whole thing and paints it to the screen are all done and working. Here it is rendering a real model. (at hundreds of FPS)
 
@@ -76,7 +76,7 @@ It's fast where it counts. Baking an edit into a chunk runs at a couple billion 
 
 I designed the whole thing to live on a GPU, not just in theory. The way the data sits on disk matches the way it sits in GPU memory, so uploading it is close to a straight copy with no conversion step. The code that reads a node avoids branches wherever it can, which keeps it fast when a whole group of GPU threads is walking the structure together. A lot of these choices only make sense once you're thinking about how a GPU fetches memory, and working that out is most of what made this fun.
 
-### What I'd add if I come back to it
+### Looking back
 
 The data structure, the importer, and the tracer are the parts I wanted to finish, and they're done. Everything past this point is stuff I'd enjoy building but didn't need in order to call this a real thing.
 
