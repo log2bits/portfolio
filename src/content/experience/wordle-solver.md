@@ -6,7 +6,7 @@ primaryTech: [Python]
 date: "2022"
 kinds: [project]
 order: 12
-image: /wordle.webp
+image: /images/wordle.webp
 ---
 
 ### The short version

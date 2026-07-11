@@ -6,7 +6,7 @@ primaryTech: [Bitsy]
 kinds: [project]
 date: "2025"
 order: 15
-image: /floodfill.png
+image: /images/floodfill.png
 ---
 
 ### The short version

@@ -6,7 +6,7 @@ primaryTech: [Docusaurus]
 date: "2024"
 kinds: [project, leadership]
 order: 11
-image: /frc-docs.png
+image: /images/frc-docs.png
 ---
 
 ### The short version

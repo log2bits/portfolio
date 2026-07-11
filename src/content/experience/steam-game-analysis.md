@@ -6,7 +6,7 @@ primaryTech: [Python]
 date: "2022"
 kinds: [project]
 order: 10
-image: /steam-analysis.png
+image: /images/steam-analysis.png
 ---
 
 ### The short version

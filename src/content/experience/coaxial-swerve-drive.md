@@ -1,7 +1,7 @@
 ---
 title: Coaxial Swerve Drive
 desc: A coaxial swerve drive software built from scratch, custom chassis, control theory, and physics simulation.
-image: /swerve-module.png
+image: /images/swerve-module.png
 tags: [java, robotics, control-theory, kinematics, odometry, simulation, state-estimation]
 primaryTech: [Java]
 date: "2023 - 2024"
@@ -17,7 +17,7 @@ This is the biggest project I've taken on. A coaxial swerve drive built from scr
 
 Most FRC robots drive like a tank: wheels fixed forward, turn by spinning one side faster. Swerve gives every wheel its own steering motor and its own drive motor, so the robot can move in any direction and rotate at the same time.
 
-![Swerve translation, rotation, and combined motion](/diagram.png)
+![Swerve translation, rotation, and combined motion](/images/diagram.png)
 
 That's a huge advantage on the field, but the control problem is brutal, and there's almost no good documentation online. There are swerve libraries other teams publish, but I built my own, because FRC is about learning and I was really excited about it.
 
@@ -25,11 +25,11 @@ That's a huge advantage on the field, but the control problem is brutal, and the
 
 The modules came as kits that we assembled, but the chassis was fully custom, designed and machined by me.
 
-![Internal coaxial swerve gearbox](/gearbox.png)
+![Internal coaxial swerve gearbox](/images/gearbox.png)
 
 Designing it meant treating the modules as real mechanical systems, accounting for gear ratios, backlash, rigidity, and where every motor and sensor mounts, not just bolting parts together.
 
-![Labeled robot chassis with electronics and modules](/labeled-robot-chassis.png)
+![Labeled robot chassis with electronics and modules](/images/labeled-robot-chassis.png)
 
 ### The control theory nobody on the team had
 

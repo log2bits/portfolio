@@ -6,7 +6,7 @@ primaryTech: [AWS, Linux]
 date: "2020 - Present"
 kinds: [project]
 order: 3
-image: /aws-server.png
+image: /images/aws-server.png
 ---
 
 ### The short version

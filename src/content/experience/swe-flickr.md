@@ -6,7 +6,7 @@ primaryTech: [Python, AWS]
 date: Summer 2023
 kinds: [work]
 order: 5
-image: /flickr.png
+image: /images/flickr.png
 ---
 
 ### The short version

@@ -6,7 +6,7 @@ primaryTech: [Python, OpenAI]
 date: "2025"
 kinds: [project]
 order: 14
-image: /stormlight.png
+image: /images/stormlight.png
 ---
 
 ### The short version

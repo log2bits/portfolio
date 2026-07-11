@@ -6,7 +6,7 @@ primaryTech: [Python, OpenCV]
 date: "2020 - 2024"
 kinds: [project, leadership]
 order: 8
-image: /computer-vision.webp
+image: /images/computer-vision.webp
 ---
 
 ### The short version

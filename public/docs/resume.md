@@ -27,14 +27,14 @@ Activities: UC Santa Cruz Game Design & Art Club
 ## Experience
 
 **Paid Software Engineering Intern**
-  : **[Flickr](https://logan.macaskill.com/experience/flickr-internship)**
+  : **[Flickr](https://logan.macaskill.com/experience/swe-flickr)**
   : **Jun 2023 - Aug 2023**
 - Cut compute cost 92% and raised throughput 39% on Wolverine, a Python AWS Lambda photo-repair service running over a library of ~10 billion photos, by tuning memory and thread allocation to the cheapest stable configuration.
 - Profiled dozens of Lambda configurations on controlled batches of real jobs in Splunk, modeling cost per job, throughput, and tail latency to find the cost/performance point AWS docs do not surface.
 - Recovered AWS's undocumented vCPU-to-memory scaling ratio by measuring CPU behavior across memory settings and fitting a linear regression, enabling accurate per-job cost estimates.
 
 **Paid Software Engineering Intern**
-  : **[SmugMug](https://logan.macaskill.com/experience/smugmug-internship)**
+  : **[SmugMug](https://logan.macaskill.com/experience/swe-smugmug)**
   : **Jun 2022 - Aug 2022**
 - Owned a user-facing gallery stats feature end to end (PHP, React, Next.js), adding daily refresh scheduling and clearer labels and empty states, shipped through PR review and QA.
 - Wrote unit tests and backend changes supporting a release-critical PHP 8.1 upgrade, pairing with senior engineers to land it on schedule.
@@ -56,13 +56,13 @@ Activities: UC Santa Cruz Game Design & Art Club
 - Built a 3D occlusion-based transparency shader that fades buildings as the player skates behind them, using a camera-to-player frustum test plus dithered alpha to fit the alpha-cut asset pipeline.
 - Added real-time shadows, dynamic lighting, and camera feel (speed-based FOV, screen shake, look-ahead), all smoothed with interpolation.
 
-**[OKLab RGB Cube Bijection](https://logan.macaskill.com/experience/oklab-experiments)**
+**[OKLab RGB Cube Bijection](https://logan.macaskill.com/experience/oklab-rgb-cube-bijection)**
   : **Rust, OKLab, Algorithms**
   : **2026**
 - Arranged all 16.7 million RGB colors into one 4096x4096 image, each color used exactly once and reading as a smooth gradient, via a recursive cube-subdivision permutation optimized against a blurred copy in OKLab perceptual color space.
 - Built a palette generator producing perceptually uniform N-color palettes by iteratively removing the least-distinct color in OKLab, surfacing a hard limit of linear RGB near one million colors.
 
-**[Coaxial Swerve Drive](https://logan.macaskill.com/experience/frc-swerve-drive)**
+**[Coaxial Swerve Drive](https://logan.macaskill.com/experience/coaxial-swerve-drive)**
   : **Java, Control Theory, Computer Vision**
   : **2023 - 2024**
 - Built a coaxial swerve drivetrain from scratch for FRC (custom CNC chassis, electronics, ~2,000 lines of Java) with no prior team experience, leading an off-season team to a working prototype in one month, ~4 months ahead of schedule.

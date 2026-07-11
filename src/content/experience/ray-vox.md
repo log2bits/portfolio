@@ -5,7 +5,7 @@ tags: [rust, webgpu, graphics, rendering, voxels, data-structures, gpu]
 primaryTech: [Rust, WebGPU]
 date: "2026"
 kinds: [project]
-image: /rvox-heatmap.png
+image: /images/rvox-heatmap.png
 order: 0
 ---
 
@@ -13,7 +13,7 @@ order: 0
 
 ray-vox is a voxel engine I built from scratch in Rust and WebGPU, where everything is ray traced, no rasterization. It's at a good stopping point now. The data structure that holds the world, the importer that fills it, and a WGSL shader that traces the whole thing and paints it to the screen are all done and working. Here it is rendering a real model. (at hundreds of FPS)
 
-![castle.vox as the shader actually paints it](/rvox-render.png)
+![castle.vox as the shader actually paints it](/images/rvox-render.png)
 
 That's 22 million voxels, one fragment shader, no rasterization and no hardware ray tracing. Each pixel fires one ray, the ray walks the tree and skips over big empty regions in a single step, and the pixel gets painted with the color of the first voxel it hits. There's no lighting on top yet, so what you're seeing is the raw voxel colors. That's a deliberate place to stop, not a half-finished one. The part I set out to get right, a data structure that's tiny and fast to trace at the same time, is done and the numbers back it up. There's a long list of things I'd love to add later, real lighting, bigger worlds, more formats, and I'll get to some of them when I have the time. But what's here stands on its own.
 
@@ -56,7 +56,7 @@ The extreme case is a solid shape. A filled sphere of 8.8 million voxels fits in
 
 ### It's an acceleration structure, not a zip
 
-![A ray skipping empty regions and refining into populated ones on a 2D version of the tree](/rvox-traversal.png)
+![A ray skipping empty regions and refining into populated ones on a 2D version of the tree](/images/rvox-traversal.png)
 
 This is the real difference between what I built and just compressing a file. The same structure that makes the castle small is also the thing a ray walks through to find what it hits. In the diagram above, a ray crosses a 2D version of the tree: the green cells are big empty regions it clears in a single step at their own scale, and the blue cells are where it drops down to look closer. The numbers are loop iterations, not voxels crossed, and one iteration can cross a whole empty subtree at once. The 3D shader runs the exact same idea. Editing is the same story: an edit knows its own size in the world, so dropping a sphere the size of a planet far away barely costs anything, because it only ever gets evaluated against the coarse chunks it actually touches. You can't get any of that from a compressor. A zip can make bytes smaller, but you can't trace a ray through a zip.
 
@@ -64,7 +64,7 @@ This is the real difference between what I built and just compressing a file. Th
 
 Now that it renders, I can watch the structure work. Here's the same scene again, but this time each pixel is colored by how many times its ray had to read memory to resolve. Dark is cheap, bright is expensive.
 
-![Memory reads per ray, dark is cheap and bright is expensive](/rvox-heatmap.png)
+![Memory reads per ray, dark is cheap and bright is expensive](/images/rvox-heatmap.png)
 
 The pattern is exactly what you'd hope for. The dark areas are rays that either miss everything or hit a big uniform chunk that resolves in one to three reads. The bright orange edges are grazing rays, the ones sliding along a silhouette, that have to descend deep into the tree and step across a lot of cell boundaries before they hit or slip past. Foliage lights up for the same reason: a tree is a mess of tiny scattered voxels, so a ray picks its way through with lots of little steps. Everywhere the frame stays cool, the tree is doing its job, letting rays skip empty space and bail out early. Seeing that pattern show up on its own, without me tuning for it, is the moment the design felt real.
 

@@ -1,7 +1,7 @@
 ---
 title: Crowd Surfers
 desc: A 2.5D pizza-delivery game from a 100-person student team. I made the case to rebuild the rendering system mid-project, then built the transparency shaders and lighting it enabled.
-image: /crowd-surfers-transparency.gif
+image: /images/crowd-surfers-transparency.gif
 tags: [godot, game-dev, shaders, rendering, graphics, 3d]
 primaryTech: [Godot, GLSL]
 date: "2025 - 2026"
@@ -27,7 +27,7 @@ Here the hard part was people, not code. The project was already pretty far alon
 
 Arguing that in the abstract wasn't going to move anyone, so I didn't just argue. I rebuilt an entire level as a working prototype on a proper 3D setup with a 45-degree orthographic camera, using our most complete scene. It turned out to be the most stable, least buggy scene the project had had. That prototype is what won people over, and from there I worked with another programmer to move the rest of the game onto the new system.
 
-![The game running in the new 3D setup, in-engine](/crowd-surfers-in-engine.png)
+![The game running in the new 3D setup, in-engine](/images/crowd-surfers-in-engine.png)
 
 ### The transparency shader
 
@@ -35,7 +35,7 @@ This was the gnarliest piece. In real 3D, the player constantly skates behind bu
 
 So I did it in 3D instead. I built a pyramid with its tip at the camera and its base anchored to the player's four corners as seen from the camera, so the pyramid covers exactly the space between the camera and the player. Any object poking into that pyramid is blocking the view, so it gets a transparency shader. The game keeps track of which objects are currently faded, smoothly lerps them in and out as you move, and strips the shader back off once they're clear.
 
-![Buildings fading out as the player skates behind them](/crowd-surfers-transparency.gif)
+![Buildings fading out as the player skates behind them](/images/crowd-surfers-transparency.gif)
 
 The transparency itself is dithered rather than a smooth blend, because our art is set to alpha-cut "discard" so the z-ordering works, which was a constraint from the asset pipeline. Dithering fakes partial transparency with a pattern of fully-on and fully-off pixels, so it plays nicely with that hard on-or-off cutoff.
 

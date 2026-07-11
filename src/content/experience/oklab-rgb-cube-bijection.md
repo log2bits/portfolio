@@ -6,14 +6,14 @@ primaryTech: [Rust]
 date: "2026"
 kinds: [project]
 order: 2
-image: /all_colors.png
+image: /images/all_colors.png
 ---
 
 ### The short version
 
 This started because I wanted a rainbow gradient that looked even, and the usual ones from HSV or HSL don't. That sent me down a rabbit hole into **OkLAB**, a color space built around how human eyes actually see, and the rabbit hole turned into two projects. The first lays out all 16 million RGB colors into a single 4K image where each color appears exactly once and the whole thing reads as one smooth gradient. The second builds perceptually even color palettes of any size, and ended up teaching me something I didn't know about the limits of color itself.
 
-![Every RGB color, exactly once, in one 4K image](/all_colors.png)
+![Every RGB color, exactly once, in one 4K image](/images/all_colors.png)
 
 I posted this and fell into a great back-and-forth about how it works, [over on Reddit](https://www.reddit.com/r/proceduralgeneration/comments/1ughr8s/every_rgb_color_exactly_once/).
 
@@ -33,18 +33,18 @@ The part I didn't see coming was the clouds. Those swirling, fractal-looking pat
 
 Then I wanted the opposite of all-the-colors: a small set of N colors that are as perceptually distinct from each other as possible. That's useful for color quantization, data visualization, pixel art, and similar things. The method I landed on, which I haven't seen anyone else try, is almost too simple. Drop all 16 million colors into OkLAB, then repeatedly find the color sitting closest to its two nearest neighbors and remove it, writing down the order it left in. Keep going until nothing's left, and that removal order is your answer: the colors that survive longest are the most distinct.
 
-![The palette generator's output, read left to right, top to bottom](/palette_generator.png)
+![The palette generator's output, read left to right, top to bottom](/images/palette_generator.png)
 
 Reading the result told me something I didn't expect. The greens and cyans get thinned out first, then magenta, because linear RGB is packed with colors in those regions that look nearly identical to us. And if you push the palette big enough, around a million colors, you hit a wall: you physically can't make it perceptually even, because the linear RGB space just doesn't hold enough colors that are evenly spaced to the human eye. The algorithm doesn't only build a palette, it runs straight into a hard limit of the color space.
 
 Here's a uniform 256-color palette it produced, laid out with the same method as the first project:
 
-![A perceptually uniform 256-color palette](/palette_256_scaled.png)
+![A perceptually uniform 256-color palette](/images/palette_256_scaled.png)
 
 And the lookup table for it, plus a graph of how the colors come out distributed:
 
-![Lookup table for the 256-color palette](/palette_lut.png)
-![Distribution of the palette](/distribution.png)
+![Lookup table for the 256-color palette](/images/palette_lut.png)
+![Distribution of the palette](/images/distribution.png)
 
 ### What I take from it
 

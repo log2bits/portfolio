@@ -6,7 +6,7 @@ primaryTech: [Godot, GLSL]
 date: "2026"
 kinds: [project]
 order: 13
-image: /continuous-cut.png
+image: /images/continuous-cut.png
 ---
 
 ### The short version

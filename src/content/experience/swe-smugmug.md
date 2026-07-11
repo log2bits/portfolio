@@ -6,7 +6,7 @@ primaryTech: [PHP, React]
 date: Summer 2022
 kinds: [work]
 order: 9
-image: /smugmug.png
+image: /images/smugmug.png
 ---
 
 ### The short version

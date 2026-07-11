@@ -1,7 +1,7 @@
 ---
 title: FRC Robot Software & Autonomy
 desc: Rebuilt our FRC robot's codebase into a modular state-machine architecture, then built dynamic autonomous and a shoot-while-moving auto-aim on top.
-image: /pathfinding.gif
+image: /images/pathfinding.gif
 tags: [java, robotics, autonomous, state-machines, software-architecture, control-systems, leadership]
 primaryTech: [Java]
 date: "2022 - 2024"
@@ -21,7 +21,7 @@ The old code worked, barely, but it was tangled enough that adding anything risk
 
 The first 15 seconds of an FRC match are fully autonomous, no driver. Most teams pre-program one fixed path. Mine doesn't. Before the match, the operator queues up which game pieces to go after, and during those 15 seconds the robot works out the route on the fly: it drives to each one, dodges the other pieces and obstacles in the way, picks it up, and shoots.
 
-![Real-time pathfinding around obstacles, tested in simulation](/pathfinding.gif)
+![Real-time pathfinding around obstacles, tested in simulation](/images/pathfinding.gif)
 
 Doing it dynamically is the whole point, because it plays well with any alliance partner. Whatever the two other robots on your alliance decide to do, ours adapts its plan instead of running a script that assumes everyone cooperates.
 
