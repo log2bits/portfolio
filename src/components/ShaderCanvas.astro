@@ -1,0 +1,46 @@
+---
+// Runs the spectral-raymarcher GLSL shader live in a WebGL2 canvas. Used both as
+// the home-grid thumbnail (interactive=false, clicks fall through to the card
+// link) and full size on the project page (interactive drag to rotate).
+interface Props {
+	class?: string;
+	interactive?: boolean;
+	poster?: string;
+	timeOffset?: number;
+	scale?: number;
+}
+const {
+	class: className,
+	interactive = true,
+	poster,
+	timeOffset = 0,
+	scale = 1,
+} = Astro.props;
+---
+
+<canvas
+	class:list={["shader-canvas", className]}
+	data-shader-canvas
+	data-interactive={interactive ? "true" : "false"}
+	data-poster={poster}
+	data-time={timeOffset}
+	data-scale={scale}></canvas>
+
+<script>
+	import initShaderCanvas from "../lib/shaderCanvas.js";
+	import frag from "../shaders/spectral-raymarcher.glsl?raw";
+
+	const canvases = document.querySelectorAll<HTMLCanvasElement>(
+		"canvas[data-shader-canvas]",
+	);
+	canvases.forEach((canvas) => {
+		if (canvas.dataset.inited) return;
+		canvas.dataset.inited = "1";
+		initShaderCanvas(canvas, frag, {
+			interactive: canvas.dataset.interactive !== "false",
+			poster: canvas.dataset.poster || null,
+			timeOffset: parseFloat(canvas.dataset.time || "0"),
+			scale: parseFloat(canvas.dataset.scale || "1"),
+		});
+	});
+</script>

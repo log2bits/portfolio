@@ -615,6 +615,49 @@ img:not(.icon) {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
+/* Shader thumbnail fills the card image slot like a cover image. Clicks fall
+   through to the card link since the canvas is non-interactive here. */
+.card-image .shader-canvas,
+.card-image .shader-canvas img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  border: 0;
+  background: #000;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.shader-canvas[data-interactive="false"] {
+  pointer-events: none;
+}
+
+/* Live shader on the project page. */
+.shader-figure {
+  margin: 1.5rem 0;
+}
+.shader-figure .shader-canvas,
+.shader-figure .shader-canvas img {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  background: #000;
+  border-radius: var(--radius);
+  cursor: grab;
+}
+.shader-figure .shader-canvas:active {
+  cursor: grabbing;
+}
+.shader-figure figcaption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--subtext0);
+}
+
 .card-image-placeholder {
   width: 100%;
   height: 100%;

@@ -9,11 +9,16 @@ order: 1
 image: /images/spectral-gem.png
 ---
 
+import ShaderCanvas from "../../components/ShaderCanvas.astro";
+
 ### The short version
 
 This is a spinning diamond that renders one wavelength of light per pixel and still comes out looking like a full-color gem. It's one GLSL shader, it runs in real time, and it never averages anything, not across frames, not across neighboring pixels. That last part is the whole trick, and it's what most of this writeup is about.
 
-<iframe width="640" height="360" frameborder="0" src="https://www.shadertoy.com/embed/sXjXDd?gui=true&t=10&paused=true&muted=false" allowfullscreen></iframe>
+<figure class="shader-figure">
+	<ShaderCanvas poster="/images/spectral-gem.png" timeOffset={10} />
+	<figcaption>Live in your browser. Click and drag to spin it.</figcaption>
+</figure>
 
 Link: [https://www.shadertoy.com/view/sXjXDd](https://www.shadertoy.com/view/sXjXDd)
 
@@ -27,7 +32,9 @@ So I stopped picking wavelengths at random and started picking them on a schedul
 
 Every pixel pulls a value from a 16 by 16 Bayer dither pattern, so there are 256 different values tiled across the screen, and that value picks which wavelength the pixel traces. One pixel traces deep red, the pixel next to it orange, the next one green, all laid out in the ordered Bayer pattern. Each pixel is a single pure color. But step back and your eye blends the neighborhood, and the blend of all those wavelengths is white. The averaging still happens, it just happens in your eye and on your monitor instead of in an accumulation buffer.
 
-That's the whole idea. A normal spectral renderer converges over time; this one is already converged in space, because the dither guarantees every little neighborhood covers the spectrum evenly. At one sample per pixel you get 256 wavelengths across the image, deterministic, no waiting. Bump it to two and the whites clean up and you're covering something like 256x256 wavelength combinations. It's cheap because the hard part isn't being computed, it's being arranged.
+That's the whole idea. A normal spectral renderer converges over time; this one is already converged in space, because the dither guarantees every little neighborhood covers the spectrum evenly. It'll run at one sample per pixel, deterministic and with no waiting, and even there you get 256 wavelengths spread across the image.
+
+But it looks best at two, which is what the demo uses. Here's the part I like. The second sample isn't just a second wavelength, it's offset by the same 256-value dither, so the two samples in a pixel land on a different pair of wavelengths than the two in the pixel next door. Across the screen that's 256x256, about 65,000 distinct wavelength combinations, and each pixel only ever traces two of them. The whites clean right up. It's cheap because the hard part isn't being computed, it's being arranged.
 
 ### The shape is just planes
 

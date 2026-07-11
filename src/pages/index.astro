@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import ShaderCanvas from "../components/ShaderCanvas.astro";
 
 const all = await getCollection("experience");
 
@@ -169,7 +170,14 @@ const sorted = [...all].sort(
 						data-kinds={kinds.join(" ")}
 					>
 						<div class="card-image">
-							{e.data.image ? (
+							{e.slug === "spectral-raymarcher" ? (
+								<ShaderCanvas
+									interactive={false}
+									poster={e.data.image}
+									timeOffset={10}
+									scale={0.85}
+								/>
+							) : e.data.image ? (
 								<img src={e.data.image} alt="" loading="lazy" />
 							) : (
 								<div class="card-image-placeholder">
