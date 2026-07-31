@@ -11,42 +11,42 @@ order: 6
 
 ### TL;DR
 
-r/place was a giant shared canvas on Reddit where millions of people placed one colored pixel at a time, with no one in charge, constantly painting over each other. I took the full history of every pixel placement and ran it through Python to pull real structure out of the chaos. The best part: when you average the canvas over time, the constant vandalism smooths away and the picture people were trying to make shows back up. The version I made of the Canadian flag doing this hit **45,000+ upvotes** on Reddit.
+r/place was a giant shared canvas on Reddit where millions of people placed one colored pixel at a time, with no one in charge, constantly painting over each other. I took the full history of every pixel placement and ran it through Python to pull structure out of the chaos.
+
+The thing that worked best: if you average the canvas over time, the constant vandalism smooths away and the picture people were trying to make comes back. My version of the Canadian flag doing this hit **45,000+ upvotes** on Reddit.
 
 ### The data
 
-Every entry in the dataset is one pixel placement: where it went (x, y), what color, and when. Simple on its own. The catch is there are a lot of them, and a single pixel might get painted over hundreds of times. So before any analysis, I had to reconstruct what the whole canvas looked like at any moment, and track how each pixel changed across the entire event. Getting that to run without choking on the size was most of the upfront work.
+Every entry in the dataset is one pixel placement: where it went (x, y), what color, and when. Simple enough on its own. The catch is that there are a lot of them and a single pixel might get painted over hundreds of times. So before any analysis, I had to reconstruct what the whole canvas looked like at any given moment, and track how each pixel changed across the entire event. Getting that to run without choking on the size was most of the upfront work.
 
 ### Pixels nobody ever touched
 
-The first thing I looked for was pixels that never changed once, start to finish. Out of the entire canvas, only **3,966** stayed completely untouched the whole event.
+The first thing I looked for was pixels that never changed once, start to finish. Out of the entire canvas, only **3,966** stayed completely untouched.
 
 ![Pixels that stayed unchanged for the entire event](/images/r-place-untouched.png)
 
-They mostly show up in two kinds of places: spots people coordinated hard to protect, and out-of-the-way corners nobody cared enough to mess with. It's a neat way to see where stability comes from on a canvas where almost everything is a fight.
+They mostly show up in two kinds of places: spots people coordinated hard to protect, and out-of-the-way corners nobody cared enough to mess with. Those two categories look identical in the data and I have no way to tell them apart automatically, which bothers me slightly.
 
 ### Hidden crewmates
 
-If you color the canvas by how often each pixel changed instead of by its final color, stuff appears that you'd never catch while it was live.
+If you color the canvas by how often each pixel changed instead of by its final color, things appear that you'd never catch while it was live.
 
 ![Hidden low-activity patterns across the canvas](/images/r-place-crewmates.png)
 
-All over the place there are little figures tucked into quiet regions, the standout being a bunch of hidden **Among Us crewmates**. People kept them alive with slow, coordinated edits in low-traffic spots, so they stayed hidden in plain sight until you look at the canvas this way.
+All over the place there are little figures tucked into low-traffic regions, the standout being a bunch of hidden **Among Us crewmates**. People kept them alive with slow, coordinated edits in areas nobody was fighting over, so they stayed invisible until you look at the canvas this way.
 
-### Full analysis + Heatmap
+### Heatmap and the rest of the stats
 
-I also tried generating a heatmap where most of the edits occured. Here's that, plus some more statistics:
+I also generated a heatmap of where most of the edits occurred. Here's that, plus some more statistics:
 
 ![The r/place canvas averaged over time](/images/r-place-statistics.png)
 
 ### The Canadian flag
 
-A great example of where averaging chaos pays off is the canadian flag:
+The clearest example of averaging paying off is the Canadian flag:
 
 ![The Canada section of the canvas, averaged over time](/images/r-place-canada.png)
 
-Live, that area was a constant mess of edits and people trying to deface it. But averaged over time, the flag people were defending snaps right into focus, with the vandalism washed out. I posted this one and it took off, [over 45,000 upvotes](https://www.reddit.com/r/place/comments/u10dpg/canada_looking_nice_when_you_average_the_pixels/). It's the clearest proof of the whole idea: with enough data, plain averaging can recover what something was supposed to look like even when it was under constant attack.
+Live, that area was a constant mess of edits and people trying to deface it. Averaged over time, the flag people were defending snaps into focus and the vandalism washes out. I posted this one and it took off, [over 45,000 upvotes](https://www.reddit.com/r/place/comments/u10dpg/canada_looking_nice_when_you_average_the_pixels/).
 
-### Looking back
-
-The thing I like about this project is how simple the winning move was. No fancy model, just counting how often pixels change and averaging them over time, run carefully over a dataset big enough that you have to think about how you touch it. And it pulled out things nobody could see live: the pixels that never moved, the hidden figures, the real images under the noise. That's the whole lesson for me. A lot of structure is sitting in messy real-world data if you pick the right simple thing to measure.
+No model, no clever technique. Counting how often pixels change and averaging them over time, run carefully over a dataset big enough that you have to think about how you touch it. That was enough to surface the pixels that never moved, the hidden figures, and the images underneath the noise.

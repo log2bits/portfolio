@@ -10,7 +10,7 @@
 
 ## About Me
 
-Third-year CS student with two software engineering internships shipping and tuning production systems. Drawn to hard problems and optimizing without cutting corners, with projects spanning realtime systems, graphics, AI, and data science in Rust, Java, C++, Python, and JavaScript.
+Third-year CS student with two software engineering internships spent shipping and tuning production systems. I love problem solving, and ensuring the solution takes complete advantage of the hardware. I've worked on projects across realtime systems, graphics, AI, and data science in Rust, Java, C++, Python, and JavaScript.
 
 ## Education
 
@@ -70,7 +70,7 @@ Third-year CS student with two software engineering internships shipping and tun
   : **2023 - 2024**
 - Built a coaxial swerve drivetrain from scratch for FRC (custom CNC chassis, electronics, ~2,000 lines of Java) with no prior team experience, leading an off-season team to a working prototype in one month, ~4 months ahead of schedule.
 - Ran per-module PID and feedforward at a 1 kHz control loop and derived current limits from robot mass and tire friction to maximize grip without slip or brownout, after self-teaching graduate-level control theory.
-- Fused wheel encoders, gyro, and AprilTag vision through a Kalman-filter pose estimator for sub-centimeter localization robust to wheel slip, and simulated the full robot (torque curves, inertia, battery, brownouts) on the exact production code.
+- Fused wheel encoders, gyro, and AprilTag vision through a Kalman-filter pose estimator holding sub-centimeter localization through wheel slip, and simulated the full robot (torque curves, inertia, battery, brownouts) on the exact production code.
 
 ## Skills
 

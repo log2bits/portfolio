@@ -11,7 +11,9 @@ image: /images/computer-vision.webp
 
 ### TL;DR
 
-Three seasons of vision for our FRC robot. I started as the computer vision lead, and the work kept evolving as the problems got harder. We went from hand-writing image-processing algorithms in **OpenCV**, to running a local AI model on dedicated hardware, to a different problem entirely: once you can see the object, where is it in 3D, and where are we on the field? The targets changed every year too, from round balls to cones and cubes to rings.
+I started as the computer vision lead on our FRC team, and the work kept changing shape as the problems got harder. We went from hand-writing image-processing algorithms in **OpenCV**, to running a local AI model on dedicated hardware, to a different problem entirely: once you can see the object, where is it in 3D, and where are we on the field?
+
+The targets changed every year too, from round balls to cones and cubes to rings, which meant a lot of this got rebuilt annually whether we wanted to or not.
 
 ### The early days: hand-written OpenCV
 
@@ -23,18 +25,22 @@ The roboRIO couldn't keep up with real-time vision, so we moved OpenCV off it. F
 
 ### Letting AI find the objects
 
-Partway through that cones-and-cubes season, working with a few other FRC teams, we got a local AI model running on a **Google Coral** paired with a Limelight camera. It detected the game pieces for us, faster and more reliably than the hand-tuned color pipeline. That was a big step, but it didn't finish the job. It just moved the hard part somewhere new.
+Partway through that cones-and-cubes season, working with a few other FRC teams, we got a local AI model running on a **Google Coral** paired with a Limelight camera. It detected the game pieces faster and more reliably than the hand-tuned color pipeline.
+
+It also didn't finish the job. Detection stopped being the bottleneck and the next problem showed up behind it.
 
 ### The real problem: geometry
 
-Knowing the object sits at some pixel in the image doesn't tell you where it is in the real world. So the focus shifted to the math: turning a detection into the object's position in 3D relative to the robot. And separately, figuring out where the robot itself is on the field, which we did with **AprilTags**. You detect the tags, refine their corners for subpixel accuracy, solve the perspective-n-point problem to recover the camera's rotation and translation, and convert that into a field position. By the last season (Crescendo, the ring game) we had multiple Limelights feeding the robot's position into everything else.
+Knowing the object sits at some pixel in the image tells you almost nothing about where it is in the real world. So the focus shifted to the math: turning a detection into the object's position in 3D relative to the robot. And separately, figuring out where the robot itself is on the field, which we did with **AprilTags**. You detect the tags, refine their corners for subpixel accuracy, solve the perspective-n-point problem to recover the camera's rotation and translation, and convert that into a field position. By the last season (Crescendo, the ring game) we had multiple Limelights feeding the robot's position into everything else.
 
 ### Camera calibration, the unglamorous part
 
-None of the pose math works without good camera calibration. Every camera distorts the image a little, so you measure the camera's intrinsic matrix and its distortion coefficients once, then undistort frames so the geometry stays honest across the whole field of view. Boring, but skip it and your position estimates quietly drift.
+None of the pose math works without good camera calibration. Every camera distorts the image a little, so you measure the camera's intrinsic matrix and its distortion coefficients once, then undistort frames so the geometry stays honest across the whole field of view. It's tedious and it's the first thing you skip when you're in a rush, and then your position estimates drift by a few centimeters and you spend an afternoon blaming the odometry.
 
-Some of this vision work, the cone-and-cube OpenCV detection and the AprilTag calibration code, is [on GitHub](https://github.com/log2bits/RobotX-Vision-2023).
+Some of this work, the cone-and-cube OpenCV detection and the AprilTag calibration code, is [on GitHub](https://github.com/log2bits/RobotX-Vision-2023).
 
-### Looking back
+### How the question kept changing
 
-The fun of this one was watching the question change under me. It started as "can we even see the game piece," became "okay, but where exactly is it," and ended as "and where are we." Each answer just exposed the next problem, and the tools changed completely along the way, from my own OpenCV code, to a trained model, to pure geometry. Leading that across three seasons taught me both the vision side and how to hand it off so it didn't all live in my head.
+It started as "can we even see the game piece," became "okay, but where exactly is it," and ended as "and where are we." Each answer exposed the next problem, and the tools changed completely along the way, from my own OpenCV code to a trained model to pure geometry.
+
+Leading it across three seasons taught me the vision side, and also that if all of it lives in your head, the team loses it when you leave.
