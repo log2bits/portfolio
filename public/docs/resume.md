@@ -10,21 +10,7 @@
 
 ## About Me
 
-Third-year CS student with two software engineering internships spent shipping and tuning production systems. I love problem solving, and ensuring the solution takes complete advantage of the hardware. I've worked on projects across realtime systems, graphics, AI, and data science in Rust, Java, C++, Python, and JavaScript.
-
-## Education
-
-**University of California**
-  : **Santa Cruz, CA**
-  : **Expected Jun 2028**
-
-**B.S. in Computer Science  |  GPA: 3.6/4.0**
-
-**Honors**: Merit Scholarship, Dean's Honors
-
-**Relevant Coursework:** Data Structures & Algorithms, Computer Architecture, Systems Programming in C, Linear Algebra, Vector Calculus, Probability & Statistics
-
-**Activities:** UC Santa Cruz Game Design & Art Club
+Third-year CS student with two software engineering internships spent shipping and tuning production systems. I love problem solving, especially when I can take complete advantage of the hardware. I've worked on projects across realtime systems, graphics, AI, and data science in Rust, Java, C++, Python, and JavaScript. Currently working on my own custom Vulkan & C++ deferred renderer.
 
 ## Experience
 
@@ -72,12 +58,26 @@ Third-year CS student with two software engineering internships spent shipping a
 - Ran per-module PID and feedforward at a 1 kHz control loop and derived current limits from robot mass and tire friction to maximize grip without slip or brownout, after self-teaching graduate-level control theory.
 - Fused wheel encoders, gyro, and AprilTag vision through a Kalman-filter pose estimator holding sub-centimeter localization through wheel slip, and simulated the full robot (torque curves, inertia, battery, brownouts) on the exact production code.
 
+## Education
+
+**University of California**
+  : **Santa Cruz, CA**
+  : **Expected Jun 2028**
+
+**B.S. in Computer Science  |  GPA: 3.6/4.0**
+
+**Honors**: Merit Scholarship, Dean's Honors
+
+**Relevant Coursework:** Data Structures & Algorithms, Computer Architecture, Systems Programming in C, Linear Algebra, Vector Calculus, Probability & Statistics
+
+**Activities:** UC Santa Cruz Game Design & Art Club
+
 ## Skills
 
 **Languages:** Rust, C++, Python, Java, TypeScript / JavaScript, PHP, GLSL / WGSL
 
-**Tools & Cloud:** Git, Linux, AWS (EC2, Lambda, Graviton), Docker, OpenCV, Godot, React / Next.js
+**Tools & Cloud:** Git, Linux, AWS (EC2, Lambda, Graviton), Docker, OpenCV, Godot, Unity, React / Next.js
 
-**Concepts:** Performance Optimization, GPU Data Structures, Control Theory, Computer Vision, Pose Estimation
+**Concepts:** Performance Optimization, GPU Compute, Control Theory, Computer Vision, Pose Estimation
 
-**Graphics & GPU:** Vulkan, WebGPU, Ray Tracing, Real-Time Rendering, Shaders, Level-of-Detail
+**Graphics & GPU:** Vulkan, WebGPU, Ray Tracing, Real-Time Rendering, Rasterization, Shaders, Level-of-Detail
