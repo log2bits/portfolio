@@ -81,3 +81,6 @@ Third-year CS student with two software engineering internships spent shipping a
 **Concepts:** Performance Optimization, GPU Compute, Control Theory, Computer Vision, Pose Estimation
 
 **Graphics & GPU:** Vulkan, WebGPU, Ray Tracing, Real-Time Rendering, Rasterization, Shaders, Level-of-Detail
+
+## Future
+Going to learn DirectX 12 (DX12) + HLSL as well as Unreal Engine after my Vulkan/C++ project
