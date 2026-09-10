@@ -6,16 +6,16 @@ tags: [java, robotics, control-theory, kinematics, odometry, simulation, state-e
 primaryTech: [Java]
 date: "2023 - 2024"
 kinds: [project, leadership]
-order: 4
+order: 5
 ---
 
 ### TL;DR
 
-This is the biggest project I've taken on. A coaxial swerve drive built from scratch: the custom chassis (I did the CNC, wiring, and electronics), the modules, and the entire software stack. Swerve is the most capable and the most complicated drivetrain in FRC, and our team had never attempted it. I led an off-season team, taught the workshops, and had a working prototype in a month, roughly four months ahead of what we'd planned for. About $4,000 of hardware and around 2,000 lines of code.
+This is the biggest project I've taken on. A coaxial swerve drive built from scratch, including the custom chassis (I did the CNC, wiring, and electronics), the modules, and the entire software stack. Swerve is the most capable and the most complicated drivetrain in FRC, and our team had never attempted it. I led an off-season team, taught the workshops, and had a working prototype in a month, roughly four months ahead of what we'd planned for. About $4,000 of hardware and around 2,000 lines of code.
 
 ### What swerve is, and why it's hard
 
-Most FRC robots drive like a tank: wheels fixed forward, turn by spinning one side faster. Swerve gives every wheel its own steering motor and its own drive motor, so the robot can move in any direction and rotate at the same time.
+Most FRC robots drive like a tank. Wheels fixed forward, turn by spinning one side faster. Swerve gives every wheel its own steering motor and its own drive motor, so the robot can move in any direction and rotate at the same time.
 
 ![Swerve translation, rotation, and combined motion](/images/diagram.png)
 
@@ -27,25 +27,27 @@ The modules came as kits that we assembled. The chassis was fully custom, design
 
 ![Internal coaxial swerve gearbox](/images/gearbox.png)
 
-Designing it meant treating the modules as real mechanical systems: gear ratios, backlash, rigidity, and where every motor and sensor mounts.
+Designing it meant treating the modules as real mechanical systems. Gear ratios, backlash, rigidity, and where every motor and sensor mounts.
+
+![Swerve module blueprint](/images/swerve-module-blueprint.png)
 
 ![Labeled robot chassis with electronics and modules](/images/labeled-robot-chassis.png)
 
 ### The control theory nobody on the team had
 
-Before I led programming, the team had no concept of control theory. No PID, no feedforward, no motor or gearbox torque math. So I taught myself from scratch, the kind of thing that's usually graduate-level, and then taught it to the team.
+Before I led programming, the team had no concept of control theory. They'd never used PID or feedforward, and nobody had done the motor and gearbox torque math. So I taught myself from scratch, the kind of thing that's usually graduate-level, and then taught it to the team.
 
-Each wheel module runs its own tuned PID plus a feedforward model, and I seed the fast built-in encoder from an absolute one so the motor controllers can run a 1,000 Hz control loop. I also turned the current limit into a feature. Instead of guessing at a safe number, I compute the exact limit from the robot's weight and the carpet's friction, so the wheels deliver max grip without ever slipping or browning out the battery.
+Each wheel module runs its own tuned PID plus a feedforward model. I seed the fast built-in encoder from an absolute one so the motor controllers can run a 1,000 Hz control loop. I also turned the current limit into a feature. Instead of guessing at a safe number, I compute the exact limit from the robot's weight and the carpet's friction, so the wheels deliver max grip without slipping or browning out the battery.
 
 ### Knowing where the robot is
 
-A swerve robot is useless for autonomous if it doesn't know where it is. I fuse three sources, the wheel encoders, a gyro, and AprilTag vision, through a Kalman-filter pose estimator, which gives a position estimate good to under a centimeter. It holds up when the robot gets shoved or the wheels slip, because the filter weighs the noisy sources against each other instead of trusting any single one.
+A swerve robot is useless for autonomous if it doesn't know where it is. I fuse three sources through a Kalman-filter pose estimator: the wheel encoders, a gyro, and AprilTag vision. That gives a position estimate good to under a centimeter. It holds up when the robot gets shoved or the wheels slip, because the filter weighs the noisy sources against each other instead of trusting any single one.
 
 ### The whole robot, simulated
 
-The entire robot can run in a physics simulation, modeled down to the motors: real torque curves, wheel inertia, battery voltage and current draw, even brownouts. Because the simulation goes that deep, the exact same code that drives the real robot drives the simulated one, with no changes.
+The entire robot can run in a physics simulation, modeled down to the motors. Real torque curves, wheel inertia, battery voltage and current draw, even brownouts. The simulation goes deep enough that the exact same code that drives the real robot drives the simulated one, with no changes.
 
-That mattered more than I expected it to. Time on the physical robot is the biggest bottleneck on any FRC team. One robot, fifteen people who need it. This let us write and tune code from a laptop, anywhere, months before the robot existed.
+That mattered more than I expected. Time on the physical robot is the biggest bottleneck on any FRC team. One robot, fifteen people who need it. This let us write and tune code from a laptop, anywhere, months before the robot existed.
 
 ### Where the writeup lives
 

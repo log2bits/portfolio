@@ -5,7 +5,7 @@ tags: [color-theory, algorithms, data-structures, rust, oklab, oklch, image-proc
 primaryTech: [Rust]
 date: "2026"
 kinds: [project]
-order: 2
+order: 4
 image: /images/all_colors.png
 ---
 
@@ -17,11 +17,11 @@ The first lays out all 16 million RGB colors into a single 4K image where each c
 
 ![Every RGB color, exactly once, in one 4K image](/images/all_colors.png)
 
-I posted this and fell into a good back-and-forth about how it works, [over on Reddit](https://www.reddit.com/r/proceduralgeneration/comments/1ughr8s/every_rgb_color_exactly_once/).
+I posted this and had a good back-and-forth about how it works, [over on Reddit](https://www.reddit.com/r/proceduralgeneration/comments/1ughr8s/every_rgb_color_exactly_once/).
 
 ### Why OkLAB
 
-A normal rainbow looks off because our eyes don't perceive color evenly. We're far more sensitive to differences in some regions, greens especially, than others, so a gradient that's mathematically even in HSV looks lumpy. Some colors hog space and others flash past. OkLAB and its cousin OkLCH are built to correct for that bias, so even spacing in OkLAB looks even to a person. Both projects measure color distance in OkLAB for that reason.
+A normal rainbow looks off because our eyes don't perceive color evenly. We're far more sensitive to differences in some regions, greens especially, than others. So a gradient that's mathematically even in HSV looks lumpy. Some colors hog space and others flash past. OkLAB and its cousin OkLCH correct for that bias, so even spacing in OkLAB looks even to a person. Both projects measure color distance in OkLAB for that reason.
 
 ### Every color, exactly once
 
@@ -29,13 +29,15 @@ The goal was to put all 16 million RGB colors into a 4096x4096 image, each one u
 
 The trick is that the numbers line up. The RGB cube holds 256x256x256 colors. Slice it into 4 along each axis and you get 64 smaller cubes, and 64 is exactly an 8x8 grid. So I lay those 64 cubes onto an 8x8 image and shuffle them around to make neighbors as perceptually close as possible, measuring against a blurred copy of the image in OkLAB. I start with a wide blur, which smooths things globally, and shrink it over time, which cleans up the local detail.
 
-Then I zoom in. Each of those 64 cubes splits into 64 of its own, filling an 8x8 block inside whatever pixel its parent landed on, and the shuffling repeats. Four levels of that takes me from 8x8 to 64x64 to 512x512 to the full 4096x4096, and by the end every pixel is a single color. Because a cube's children never leave the spot their parent claimed, every one of the 16 million colors shows up exactly once. The image is a permutation of the RGB cube rather than a picture of it.
+Then I zoom in. Each of those 64 cubes splits into 64 of its own, filling an 8x8 block inside whatever pixel its parent landed on, and the shuffling repeats. Four levels of that takes me from 8x8 to 64x64 to 512x512 to the full 4096x4096, and by the end every pixel is a single color. A cube's children never leave the spot their parent claimed, so every one of the 16 million colors shows up exactly once. The image is a permutation of the RGB cube rather than a picture of it.
 
-The clouds were an accident. Those swirling, fractal-looking patterns weren't designed and I didn't predict them. Squashing a 3D cube of color down onto a flat image forces compromises somewhere, and apparently this is what those compromises look like. I still don't have a satisfying explanation for why they take that particular shape. The four dark corners are a smaller quirk with a boring cause: I do the math with wrapping, then slide the whole image so pure black sits in the top-left.
+The clouds were an accident. Those swirling, fractal-looking patterns weren't designed and I didn't predict them. Squashing a 3D cube of color down onto a flat image forces compromises somewhere, and apparently this is what those compromises look like. I still don't have a satisfying explanation for why they take that particular shape. The four dark corners are a smaller quirk with a boring cause. I do the math with wrapping, then slide the whole image so pure black sits in the top-left.
 
 ### A palette that runs into a wall
 
-Then I wanted the opposite of all-the-colors: a small set of N colors that are as perceptually distinct from each other as possible. That's useful for color quantization, data visualization, and pixel art. The method I landed on, which I haven't seen anyone else try, is almost too simple. Drop all 16 million colors into OkLAB, then repeatedly find the color sitting closest to its two nearest neighbors and remove it, writing down the order it left in. Keep going until nothing's left. That removal order is your answer, since the colors that survive longest are the most distinct.
+Then I wanted the opposite of all-the-colors. A small set of N colors that are as perceptually distinct from each other as possible, which is useful for color quantization, data visualization, and pixel art.
+
+The method I landed on is almost too simple, and I haven't seen anyone else try it. Drop all 16 million colors into OkLAB. Then repeatedly find the color sitting closest to its two nearest neighbors and remove it, writing down the order it left in. Keep going until nothing's left. That removal order is your answer, since the colors that survive longest are the most distinct.
 
 ![The palette generator's output, read left to right, top to bottom](/images/palette_generator.png)
 

@@ -5,7 +5,7 @@ tags: [documentation, technical-writing, docusaurus, robotics, systems-engineeri
 primaryTech: [Docusaurus]
 date: "2024"
 kinds: [project, leadership]
-order: 11
+order: 13
 image: /images/frc-docs.png
 ---
 
@@ -13,7 +13,9 @@ image: /images/frc-docs.png
 
 By my senior year I'd become the team's single point of failure on software. I was doing most of the programming, I'd written most of the codebase, I'd learned most of the hard concepts on my own, and almost none of it was written down anywhere. When I graduated, all of that was going to walk out the door with me.
 
-So I built a wiki that teaches the team's hardest systems from first principles: control theory, swerve drive, sensors, telemetry, and simulation. [You can read it here.](https://6962-technical-wiki.vercel.app/paper)
+So I built a wiki that teaches the team's hardest systems from first principles. Control theory, swerve drive, sensors, telemetry, and simulation. [You can read it here.](https://6962-technical-wiki.vercel.app/paper)
+
+![The wiki](/images/frc-docs.png)
 
 The FRC resources that already exist are scattered, often out of date, and usually assume you know a lot already, which is a rough wall for a new student. Most people fall back to trial and error. I wanted something better than that for whoever came after me.
 
@@ -35,4 +37,4 @@ The whole thing teaches from the ground up, with a plain example before any math
 
 The wiki became the backbone of how I passed things down. It's the basis for the workshops I taught new programmers, the onboarding for new members, and my senior capstone, which was a whole course on robotics programming and electronics. A lot of my last season went into mentoring Arjun, the next programming lead.
 
-Writing it taught me as much as building any of the robots did, mostly because you can't explain control theory clearly until you actually understand it, and there were a few sections where I discovered mid-paragraph that I didn't.
+Writing it taught me as much as building any of the robots did, mostly because you can't explain control theory clearly until you actually understand it. There were a few sections where I discovered mid-paragraph that I didn't.

@@ -5,13 +5,13 @@ tags: [python, aws, cloud-computing, performance-optimization, distributed-syste
 primaryTech: [Python, AWS]
 date: Summer 2023
 kinds: [work]
-order: 5
+order: 6
 image: /images/flickr.png
 ---
 
 ### TL;DR
 
-I spent most of my summer at Flickr tuning one AWS Lambda workflow until it ran faster and cost a fraction of what it used to. Same jobs in, same output out.
+I spent most of my summer at Flickr tuning one AWS Lambda workflow until it ran faster and cost a fraction of what it used to. Same jobs going in, same output coming out.
 
 - Cost: down 91.79%
 - Throughput: up 38.5%
@@ -20,7 +20,7 @@ This wasn't a sandbox project. The pipeline runs in production against a library
 
 ### What Lambda is, briefly
 
-Lambda is AWS's service for small jobs that run on demand. You give it a function, it runs that function whenever something triggers it, and you only pay for the time it's actually running.
+Lambda is AWS's service for small jobs that run on demand. You give it a function, it runs that function whenever something triggers it, and you only pay for the time it's running.
 
 ### Where Flickr uses it
 
@@ -30,7 +30,7 @@ Wolverine repairs photos. When an image gets corrupted or breaks, Wolverine is w
 
 ### The problem
 
-When you set up a Lambda function you pick two things: how much RAM it gets, and how many threads it runs. RAM is the working memory. Threads decide how many jobs run at once, so more threads means more work in parallel.
+When you set up a Lambda function you pick two things. How much RAM it gets, and how many threads it runs. RAM is the working memory. Threads decide how many jobs run at once, so more threads means more work in parallel.
 
 Both of these change how fast and how expensive the function is. The pricing is what makes it interesting. Lambda bills you in **GB-seconds**, which is the RAM you allocate times how long the function runs:
 
@@ -40,7 +40,7 @@ Cost = RAM (in GB) * runtime (in seconds)
 
 Watch what each knob does. More RAM costs more per second, but more RAM also makes the function faster, which means fewer seconds. So bumping RAM up can make a job cheaper. More threads finish the batch faster because more jobs run at once, but more threads need more RAM, which costs more per second, which also makes things faster, which can make it cheaper again.
 
-Both knobs push cost up and down simultaneously. There's a sweet spot for RAM and a sweet spot for threads, and you can't read either one off the AWS docs. You have to go measure it.
+Both knobs push cost up and down at the same time. There's a sweet spot for RAM and a sweet spot for threads, and you can't read either one off the AWS docs. You have to go measure it.
 
 ### How I found it
 
@@ -57,7 +57,7 @@ Jobs / Sec / CPU    = Batch Size / Total Time / vCPUs
 Cost / Job          = (RAM in GB * Total Time) / Batch Size
 ```
 
-One thing got in the way. Lambda scales your virtual CPUs based on how much RAM you give it, but Amazon doesn't publish the exact ratio, and I needed it for the Jobs / Sec / CPU number. So I measured CPU behavior across a range of RAM settings and ran a linear regression to pull the ratio out myself.
+One thing got in the way. Lambda scales your virtual CPUs based on how much RAM you give it, and Amazon doesn't publish the exact ratio. I needed it for the Jobs / Sec / CPU number. So I measured CPU behavior across a range of RAM settings and ran a linear regression to pull the ratio out myself.
 
 <div class="chart-embed">
   <iframe
@@ -85,6 +85,6 @@ That setting gave the lowest cost per job while keeping throughput high and tail
 
 ### The thing that surprised me
 
-Both of the obvious moves are wrong. Crank the RAM and you overshoot. Add more threads and you overshoot the other way. What I didn't expect going in was that the cheapest config and the fastest config would land within a notch of each other, which is not something I'd have predicted from the pricing formula alone. I only found that out because I had measurements instead of intuition.
+Both of the obvious moves are wrong. Crank the RAM and you overshoot. Add more threads and you overshoot the other way. What I didn't expect going in was that the cheapest config and the fastest config would land within a notch of each other. The pricing formula on its own wouldn't have told me that. I only found it because I had measurements instead of intuition.
 
 The broader thing I took away is that AWS hides a lot of real hardware behavior behind two innocent-looking sliders, and the docs won't tell you where the edges are.

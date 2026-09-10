@@ -5,7 +5,7 @@ tags: [python, algorithms, information-theory, probability, optimization, game-s
 primaryTech: [Python]
 date: "2022"
 kinds: [project]
-order: 12
+order: 14
 image: /images/wordle.webp
 ---
 
@@ -15,19 +15,21 @@ This started after watching [3Blue1Brown's video on solving Wordle with informat
 
 The result plays Wordle in **3.428 guesses on average**. A truly perfect solver does it in **3.421**, but it takes over **100 times longer** to run. So mine is close enough to perfect while staying fast enough to actually use while you're playing. The same engine, fed different word lists, also solves Nerdle and Primel, plus an evil mode that plays against you.
 
+![The solver running](/images/wordle.webp)
+
 [Code's on GitHub.](https://github.com/log2bits/wordle-bot)
 
 ### How it picks a guess
 
 A good guess is one that teaches you the most no matter what the answer turns out to be.
 
-So at each step: take a candidate guess and imagine playing it against every word that's still possible. Each of those words would light up a different pattern of greens, yellows, and grays. Group the possible answers by which pattern they'd produce. A great guess splits them into lots of small groups, because whatever the real answer is, you've cut the field way down. A bad guess leaves them in a few big lumps.
+So at each step, take a candidate guess and imagine playing it against every word that's still possible. Each of those words would light up a different pattern of greens, yellows, and grays. Group the possible answers by which pattern they'd produce. A great guess splits them into lots of small groups, because whatever the real answer is, you've cut the field way down. A bad guess leaves them in a few big lumps.
 
-That's the idea from the video. I tried a few different ways to measure a "good split": counting the number of distinct patterns, computing the information content (entropy), and computing how many answers you'd expect to have left. They land in roughly the same place, honestly closer than I expected, and I went with whichever gave the best average. The opening guess is hardcoded to SALET, which is the strongest first word that falls out of the analysis.
+That's the idea from the video. I tried a few different ways to measure a "good split". Counting the number of distinct patterns. Computing the information content, which is entropy. Computing how many answers you'd expect to have left. They land in roughly the same place, honestly closer than I expected, and I went with whichever gave the best average. The opening guess is hardcoded to SALET, which is the strongest first word that falls out of the analysis.
 
 ### The duplicate-letter trap
 
-There's one part of Wordle that's easy to get wrong, and getting it wrong breaks the whole solver without looking like it's broken: repeated letters.
+There's one part of Wordle that's easy to get wrong, and getting it wrong breaks the whole solver without looking like it's broken. Repeated letters.
 
 If your guess has two of the same letter but the answer only has one, Wordle won't color both of them. A naive solver overcounts those yellows and then discards the real answer as impossible. So the simulation marks all the greens first, then hands out yellows only up to how many of each letter are left in the answer. That makes the simulated colors match real Wordle exactly, which everything else depends on.
 
@@ -35,7 +37,7 @@ I lost an embarrassing amount of time to this before I worked out what was happe
 
 ### Near-perfect without the price tag
 
-A truly perfect solver looks ahead: for every guess, it considers every follow-up, and every follow-up to that, all the way down. That's correct and it's brutally slow.
+A truly perfect solver looks ahead. For every guess, it considers every follow-up, and every follow-up to that, all the way down. That's correct and it's brutally slow.
 
 Mine skips the deep lookahead. It scores each guess in a single pass over the words still in play, just from how the groups come out, and that alone gets it to 3.428 against the perfect 3.421. Chasing that last 0.007 of a guess is what costs the 100x.
 

@@ -5,7 +5,7 @@ tags: [python, llm, prompt-engineering, openai, batch-processing, data-pipeline]
 primaryTech: [Python, OpenAI]
 date: "2025"
 kinds: [project]
-order: 14
+order: 16
 image: /images/stormlight.png
 ---
 
@@ -13,7 +13,9 @@ image: /images/stormlight.png
 
 I wanted my browser's new-tab page to show a random great quote from the Stormlight Archive, the Brandon Sanderson series. This sounds like a five-minute project and it wasn't.
 
-Showing a quote on a page is trivial. The actual problem was getting a computer to decide which lines out of thousands of pages are worth showing, and that turned into a prompt-engineering problem: teaching a small model to have taste, and to throw out almost everything.
+![The new-tab page](/images/stormlight.png)
+
+Showing a quote on a page is trivial. The actual problem was getting a computer to decide which lines out of thousands of pages are worth showing, and that turned into a prompt-engineering problem. Teaching a small model to have taste, and to throw out almost everything.
 
 Here's the website: https://storm-tab.vercel.app/
 
@@ -23,7 +25,7 @@ Before any of the interesting part, I had to get the books into clean plain text
 
 ### Where most of the work went
 
-My first attempt was the obvious one: hand the model a chunk of text and ask for the good quotes. Useless. The model is desperate to be helpful, so it handed back dozens of "quotes" per chapter and almost none were any good. Internal narration that isn't even dialogue. Half sentences. Bland filler. Nice-sounding lines that turned out to be said by some guard who never shows up again.
+My first attempt was the obvious one. Hand the model a chunk of text and ask for the good quotes. Useless. The model is desperate to be helpful, so it handed back dozens of "quotes" per chapter and almost none were any good. Internal narration that isn't even dialogue. Half sentences. Bland filler. Nice-sounding lines that turned out to be said by some guard who never shows up again.
 
 ### Teaching the model to say no
 
@@ -38,7 +40,7 @@ Once the model was allowed, and then actively encouraged, to reject almost every
 
 ### Doing it across the whole series
 
-These books are enormous, so once you chop them into chunks you're looking at thousands of requests. Sending those one at a time would be slow and pricey, so I used OpenAI's batch API: you upload one big file of requests, it works through them within a day, and it costs about half as much. I don't care if it takes a few hours.
+These books are enormous, so once you chop them into chunks you're looking at thousands of requests. Sending those one at a time would be slow and pricey, so I used OpenAI's batch API. You upload one big file of requests, it works through them within a day, and it costs about half as much. I don't care if it takes a few hours.
 
 The script handles the tedious parts. It splits each book into roughly 1,000-word chunks with a little overlap, so a quote can't get sliced in half at a boundary. It cancels any old batches still running so they don't pile up, uploads everything, waits, and merges all the results into a single file the new-tab page reads from.
 

@@ -5,19 +5,21 @@ tags: [bitsy, puzzle, procedural-generation, creative-coding, 1-bit]
 primaryTech: [Bitsy]
 kinds: [project]
 date: "2025"
-order: 15
+order: 17
 image: /images/floodfill.png
 ---
 
 ### TL;DR
 
-A puzzle game in **Bitsy**, a tiny engine for making little browser games out of 8x8 sprites and barely any programming. The puzzle is simple to describe: fill every tile on a grid without ever crossing your own path. Building the levels by hand would have been brutal in an engine this limited, so I wrote a script to generate the game data directly. The finished game is over 2,000 lines of Bitsy data.
+A puzzle game in **Bitsy**, a tiny engine for making little browser games out of 8x8 sprites and barely any programming. The puzzle is simple to describe. Fill every tile on a grid without ever crossing your own path. Building the levels by hand would have been brutal in an engine this limited, so I wrote a script to generate the game data directly. The finished game is over 2,000 lines of Bitsy data.
 
-Here's the game if you wish to play it: https://log2bits.itch.io/floodfill
+![The game](/images/floodfill.png)
+
+Here's the game if you want to play it: https://log2bits.itch.io/floodfill
 
 ### Getting into Bitsy
 
-The first Bitsy game I ever played was [Under a Star Called Sun](https://haraiva.itch.io/under-a-star-called-sun), and it caught me off guard. The engine is brutally limited, down to the art, and that's exactly what makes these games good. Every pixel has to earn its place. I bounced around the popular Bitsy games for a while and it was kind of overwhelming. The care people put into individual pixels is wild.
+The first Bitsy game I ever played was [Under a Star Called Sun](https://haraiva.itch.io/under-a-star-called-sun), and it caught me off guard. The engine is brutally limited, down to the art, and that's what makes these games good. Every pixel has to earn its place. I bounced around the popular Bitsy games for a while and it was kind of overwhelming. The care people put into individual pixels is wild.
 
 I'm a programmer and not an artist. So I went looking for an idea that leaned on code and story instead of art. Bitsy's programming side is just as limited as its art (you get conditionals, variables, and not much else) but I figured there was something there.
 
@@ -31,7 +33,7 @@ Back to the drawing board. I tried a few more ideas, including one where you're 
 
 ### Going simpler
 
-So I went looking for simpler games to learn from. [Roomba Quest](https://st33d.itch.io/roomba-quest) stuck out. You're a roomba running around doing roomba things. There's more to it and the story gets better, but the core is that simple. The useful part is that a roomba is just a rounded square with a face, so the art never has to fight the 8x8 palette. [You Are Dough](https://npckc.itch.io/you-are-dough) pulls the same trick: you play a lump of dough, no detail needed, and it works.
+So I went looking for simpler games to learn from. [Roomba Quest](https://st33d.itch.io/roomba-quest) stuck out. You're a roomba running around doing roomba things. There's more to it and the story gets better, but the core is that simple. The useful part is that a roomba is a rounded square with a face, so the art never has to fight the 8x8 palette. [You Are Dough](https://npckc.itch.io/you-are-dough) pulls the same trick. You play a lump of dough, no detail needed, and it works.
 
 Bitsy games feel best when the art leans into the engine's limits instead of fighting them. Took me three abandoned ideas to figure that out.
 
@@ -43,11 +45,11 @@ So I downloaded the game files, and what I found was a little insane. Hundreds o
 
 ### Building mine
 
-I wanted to take the Ouroboros idea the rest of the way: add a victory condition, add levels, and add sections that start out already filled.
+I wanted to take the Ouroboros idea the rest of the way. Add a victory condition, add levels, and add sections that start out already filled.
 
-Filling a grid without ever crossing your own path is a **Hamiltonian path**, and finding one is NP-complete. Which is a fancy way of saying it's really hard for a computer to solve in general, and that's exactly what makes it a decent puzzle for a person.
+Filling a grid without ever crossing your own path is a **Hamiltonian path**, and finding one is NP-complete. Which is a fancy way of saying it's really hard for a computer to solve in general, and that's what makes it a decent puzzle for a person.
 
-The art was easy this time. The logic was the monster. Bitsy data for something like this is enormously repetitive, one chunk per cell, so instead of writing it all by hand I made a small script to generate the repetitive parts and imported them straight in. On top of that I needed a per-level counter tracking how many tiles were filled, plus logic to only move to the next level once every tile was covered. The rest was close to how Ouroboros works, which did not make it easy. It took me hours just to get the logic behaving, and when it finally clicked it was extremely satisfying. I still can't quite believe this runs in plain Bitsy.
+The art was easy this time. The logic was the monster. Bitsy data for something like this is enormously repetitive, one chunk per cell. So instead of writing it all by hand I made a small script to generate the repetitive parts and imported them straight in. On top of that I needed a per-level counter tracking how many tiles were filled, plus logic to only move to the next level once every tile was covered. The rest was close to how Ouroboros works, which did not make it easy. It took me hours just to get the logic behaving, and when it finally clicked it was extremely satisfying. I still can't quite believe this runs in plain Bitsy.
 
 ### What's still broken
 

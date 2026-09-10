@@ -6,7 +6,7 @@ tags: [python, data-analysis, visualization, large-datasets, statistics]
 primaryTech: [Python]
 date: "2022"
 kinds: [project]
-order: 6
+order: 8
 ---
 
 ### TL;DR
@@ -17,7 +17,7 @@ The thing that worked best: if you average the canvas over time, the constant va
 
 ### The data
 
-Every entry in the dataset is one pixel placement: where it went (x, y), what color, and when. Simple enough on its own. The catch is that there are a lot of them and a single pixel might get painted over hundreds of times. So before any analysis, I had to reconstruct what the whole canvas looked like at any given moment, and track how each pixel changed across the entire event. Getting that to run without choking on the size was most of the upfront work.
+Every entry in the dataset is one pixel placement. Where it went (x, y), what color, and when. Simple enough on its own. The catch is that there are a lot of them and a single pixel might get painted over hundreds of times. So before any analysis, I had to reconstruct what the whole canvas looked like at any given moment, and track how each pixel changed across the entire event. Getting that to run without choking on the size was most of the upfront work.
 
 ### Pixels nobody ever touched
 
@@ -25,7 +25,7 @@ The first thing I looked for was pixels that never changed once, start to finish
 
 ![Pixels that stayed unchanged for the entire event](/images/r-place-untouched.png)
 
-They mostly show up in two kinds of places: spots people coordinated hard to protect, and out-of-the-way corners nobody cared enough to mess with. Those two categories look identical in the data and I have no way to tell them apart automatically, which bothers me slightly.
+They mostly show up in two kinds of places. Spots people coordinated hard to protect, and out-of-the-way corners nobody cared enough to mess with. Those two categories look identical in the data and I have no way to tell them apart automatically, which bothers me slightly.
 
 ### Hidden crewmates
 
@@ -49,4 +49,4 @@ The clearest example of averaging paying off is the Canadian flag:
 
 Live, that area was a constant mess of edits and people trying to deface it. Averaged over time, the flag people were defending snaps into focus and the vandalism washes out. I posted this one and it took off, [over 45,000 upvotes](https://www.reddit.com/r/place/comments/u10dpg/canada_looking_nice_when_you_average_the_pixels/).
 
-No model, no clever technique. Counting how often pixels change and averaging them over time, run carefully over a dataset big enough that you have to think about how you touch it. That was enough to surface the pixels that never moved, the hidden figures, and the images underneath the noise.
+There's no model here and no clever technique. Counting how often pixels change and averaging them over time, run carefully over a dataset big enough that you have to think about how you touch it. That was enough to surface the pixels that never moved, the hidden figures, and the images underneath the noise.
