@@ -3,11 +3,17 @@ layout: ../layouts/BaseLayout.astro
 title: About Me
 ---
 
-What I like most is a hard problem. The kind with no clean answer, where the constraints fight each other and you have to find, or build, the best way through. I'm a computer science student at UC Santa Cruz, going into my third year, and that's the thread through most of what I've built.
+What I'm chasing is code that feels like magic. Something that runs unbelievably fast, or fits in far less memory than should be possible, or just looks really good.
+
+Something that looks cool and runs slowly is just shitty magic. The trick has to survive being measured.
+
+Visuals add to it, especially when you're replicating something real. My spectral raymarcher does a physically accurate diamond, dispersion and all, in one shader in real time. It runs the actual physics, and that's most of why it's satisfying.
+
+Finding a way nobody has used before is the same feeling. The voxel format in ray-vox came out of a few dead ends and one good idea. It packs a scene smaller than a gzipped copy of the source file, and the GPU reads that same layout directly. I hadn't seen anyone do that.
+
+I'm a computer science student at UC Santa Cruz, going into my third year, and that's the thread through most of what I've built.
 
 It shows up in different shapes. I built a voxel renderer from scratch around a data structure I designed. It holds a scene in a fifth the space and stays fast to trace on the GPU. I worked out how to lay all 16 million RGB colors into a single image that reads as one smooth gradient. The method is one I haven't seen anyone else use. I tuned a production service until it ran 39% faster and cost 92% less for the same output. And I built a robot that fuses its sensors to know where it is on the field to within a centimeter.
-
-Let me be straight about speed, since it's the thing people assume about me. I do love making things fast. It's a big part of why I learned Rust. But the fast I care about is fast without cutting corners. It's easy to make something quick by making it worse. The version I want is both at once, and that's the harder problem.
 
 ### What I'm looking for
 
@@ -20,6 +26,8 @@ That's narrower than what I'd have said a year ago, and wider than it sounds. Gr
 The thing I'm proudest of from the last two years wasn't a feature. On a game built by a 100-person student team, I got convinced our rendering setup was going to rot into something we couldn't dig out of. Rather than keep arguing about it in meetings, I rebuilt a full level on a new 3D system to prove the point. That prototype got the team to switch. The transparency shader I wrote afterward was much harder code. Convincing people to do the rewrite was the part that mattered.
 
 I also care about making things other people can pick up, so I write stuff down. My robotics team has a wiki I built from scratch, so the hard parts survive after I graduate. Every project on this site has a real writeup too. Being able to explain what you built matters about as much as building it.
+
+I also like talking about software with other people, nerding out, and working a problem together rather than alone. It's a big part of why I joined a game dev club instead of building everything by myself.
 
 Two internships inside production codebases taught me the thing I still think about most: careful beats clever when a lot of people depend on your code. I test it, I push it through review, and I'd rather ship safely than look clever and break prod.
 
