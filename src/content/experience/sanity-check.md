@@ -49,7 +49,7 @@ Once every statement is a set, the hard questions get cheap:
 - **The room is fair** when exactly one world survives. Not one *door*, one *world*, because the player has to name the liars too and I wanted that pinned down as well.
 - **A clue is load-bearing** if you drop it, re-intersect, and the answer stops being unique.
 
-That third one is my favourite and it's the check I think most puzzle generators skip. Every statement in a finished room has been removed and put back to confirm it's doing real work.
+That third one is my favorite and it's the check I think most puzzle generators skip. Every statement in a finished room has been removed and put back to confirm it's doing real work.
 
 160 worlds means 160 bits, which doesn't fit in anything built in, so the sets are an array of 64-bit words with the operations written by hand. Intersecting is a loop of `&`. Counting survivors is a popcount. Asking whether two sets overlap at all stops at the first non-zero word instead of building an intersection it's about to throw away, because the generator asks that question constantly.
 
@@ -80,7 +80,7 @@ I also want to be straight that the thing I'm proudest of here is a data structu
 
 ### The rest of it
 
-I also did the game's visual pass. The lighting, the bloom and anti-aliasing and colour grading, and the white-out transition between rooms. That one holds the screen at full blow-out for a beat and then eases off on a squared falloff, so it lands softer than a straight fade. The UI text glows by pushing its colour past 1.0 into HDR, so the bloom pass picks it up on its own. And I worked with Chris on the procedural room generation that places the doors and objects the solver then writes puzzles about.
+I also did the game's visual pass. The lighting, the bloom and anti-aliasing and color grading, and the white-out transition between rooms. That one holds the screen at full blow-out for a beat and then eases off on a squared falloff, so it lands softer than a straight fade. The UI text glows by pushing its color past 1.0 into HDR, so the bloom pass picks it up on its own. And I worked with Chris on the procedural room generation that places the doors and objects the solver then writes puzzles about.
 
 The whole thing reminded me of FRC. Small team, hard deadline, and everyone trusting that the part they can't see will work on the day. I came out of it knowing Unity and C#, which I didn't a week before.
 

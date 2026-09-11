@@ -31,7 +31,7 @@ We also wanted a timestop mechanic, where you could let enemies creep closer in 
 
 The slashing mechanic was the interesting piece to build. I treated the coordinates in polar space relative to the center of the screen, which is where the character is. Then I limited how fast the radius can change over time. That's what forces the long sweeping arcs instead of letting you jab straight at a spawn.
 
-I also wrote the ordered dithering shader on the slash and the slash guide. I took the shader from Crowd Surfers and modified it to work here, and the result is a gradient that still only uses 2 colors. It's my favourite thing in the game to look at. I thought about doing a full-screen blue noise dithering pass at some point but we ran out of time. I'll revisit that idea.
+I also wrote the ordered dithering shader on the slash and the slash guide. I took the shader from Crowd Surfers and modified it to work here, and the result is a gradient that still only uses 2 colors. It's my favorite thing in the game to look at. I thought about doing a full-screen blue noise dithering pass at some point but we ran out of time. I'll revisit that idea.
 
 Getting the enemies to move properly was more of a pain than it should have been, though a couple of tutorials sorted that out.
 
@@ -43,7 +43,7 @@ We went with a **two-bit color palette**. Keeping the colors simple gives the ga
 
 ### Splitting the work
 
-I had a good amount of prior experience with Godot from Crowd Surfers, so I was confident going in. My friend Jack had less experience and is more geared toward game design, so he took the UI and sound effects while I worked on the enemy and slashing behaviour.
+I had a good amount of prior experience with Godot from Crowd Surfers, so I was confident going in. My friend Jack had less experience and is more geared toward game design, so he took the UI and sound effects while I worked on the enemy and slashing behavior.
 
 ### Credits and tools
 

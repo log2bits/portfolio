@@ -29,7 +29,7 @@ I've loved video games my whole life, and graphics is where that runs into the h
 
 It's also where the constraints fight hardest. You get about 16 milliseconds, the hardware is whatever the player already owns, and you can't throw more machines at it. The answer has to come from arranging the work better, which is the kind of problem I like most.
 
-That's why ray-vox and the spectral raymarcher are the two things I've sunk the most into. It's also why the maths I'm working on now is rendering maths specifically.
+That's why ray-vox and the spectral raymarcher are the two things I've sunk the most into. It's also why the math I'm working on now is rendering math specifically.
 
 ### Outside of that
 
