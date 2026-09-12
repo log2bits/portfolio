@@ -1,0 +1,255 @@
+%-------------------------
+% Logan MacAskill - resume
+% Jake's Resume template (MIT), https://github.com/jakegut/resume
+% Ported from portfolio/public/docs/resume.md on 2026-09-12
+%------------------------
+
+% FONT SIZE. Plain \documentclass{article} only accepts 10, 11 and 12pt, so
+% getting under 10 means the extarticle class, which adds 8pt and 9pt. Overleaf
+% has extsizes installed, nothing to do.
+%
+% 9pt is about the floor for a resume. Below that it reads as someone who could
+% not bear to cut anything. If it fits at 9.5 or 10, use that instead.
+\documentclass[letterpaper,9pt]{extarticle}
+% \documentclass[letterpaper,10pt]{article}   % the original, swap back freely
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+% xcolor rather than color, so the dvipsnames palette is available for links.
+% Drop-in replacement, nothing else changes.
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{verbatim}
+\usepackage{enumitem}
+
+% LINKS. Underline alone reads as emphasis, not as something clickable, so
+% every link is also colored. MidnightBlue is dark enough to stay readable on
+% paper and in grayscale; a saturated blue looks like a 1998 web page.
+%
+% The underline stays on purpose. Color dies when someone prints in grayscale,
+% the underline survives, so the two together cover both cases.
+%
+% Color has no effect on ATS parsing. Text extraction ignores it entirely.
+\usepackage[colorlinks=true, urlcolor=MidnightBlue, linkcolor=MidnightBlue]{hyperref}
+% \usepackage[hidelinks]{hyperref}   % the original, all-black links
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins. Widened from Jake's defaults (which give 0.5in sides) to 0.4in.
+% This is aimed at your actual complaint: a bullet that spills three words onto
+% a second line costs a whole line, so widening the text block kills those
+% specific wraps without shrinking any type. 0.4in is the floor. Below it some
+% print paths clip the edge.
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% This line is the whole reason for the switch. It embeds a ToUnicode map, so
+% every glyph in the PDF maps back to a real character. That is what the
+% autofill parsers read.
+\pdfgentounicode=1
+
+% SPACING. Two separate knobs, deliberately pulling opposite directions.
+%
+% \linespread tightens the lines INSIDE one bullet, so a bullet that wraps
+% reads as a single block instead of two loose lines. 0.95 is safe at 9pt;
+% below about 0.90 descenders start crowding the line beneath.
+%
+% itemsep (down in \resumeItemListStart) opens the gap BETWEEN bullets. That
+% is what makes them separable at a glance once the inner lines are tight.
+%
+% Net cost is a few lines: the gaps add more than the tightening saves. Drop
+% itemsep to 2pt first if it pushes you over.
+\linespread{0.95}
+
+%-------------------------
+% Custom commands
+
+% The \vspace{-2pt} that used to live INSIDE this macro is the blank-line bug.
+% A \vspace inside the item's own paragraph has to attach to something, so
+% when a bullet's last line happens to fill the measure exactly, TeX opens a
+% fresh line to hold the glue and you get a phantom empty line under it. The
+% spacing now lives on the list instead, where it cannot do that.
+\newcommand{\resumeItem}[1]{
+  \item\small{#1}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+% itemsep is the gap between bullets. topsep is the gap above the first one.
+% parsep and partopsep are set to zero so the only vertical space in this list
+% is the one you are actually controlling.
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.2in, itemsep=3pt, parsep=0pt, topsep=3pt, partopsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Logan MacAskill} \\ \vspace{3pt}
+    \small Los Altos, CA $|$ (650) 237-9593 $|$
+    \href{mailto:logan@macaskill.com}{\underline{logan@macaskill.com}} \\ \vspace{2pt}
+    \href{https://logan.macaskill.com}{\underline{logan.macaskill.com}} $|$
+    \href{https://github.com/log2bits}{\underline{github.com/log2bits}} $|$
+    \href{https://www.linkedin.com/in/logan-macaskill-356190222/}{\underline{linkedin.com/in/logan-macaskill}}
+\end{center}
+
+%-----------ABOUT ME-----------
+\section{About Me}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{Third-year CS student with two software engineering internships spent shipping and tuning production systems. I love problem solving, especially when I can take complete advantage of the hardware. I have worked across real-time systems, graphics, AI, and data science, and I am currently building my own Vulkan and C++ deferred renderer.}}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of California, Santa Cruz}{Santa Cruz, CA}
+      {B.S. in Computer Science, GPA 3.6/4.0}{Expected Jun 2028}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Software Engineering Intern}{Jun 2023 -- Aug 2023}
+      {Flickr}{Mountain View, CA}
+      \resumeItemListStart
+        \resumeItem{Cut compute cost 92\% and raised throughput 39\% on a Python AWS Lambda service repairing 10 billion photos.}
+        \resumeItem{Tuned memory and thread allocation to the cheapest stable configuration.}
+        \resumeItem{Profiled dozens of Lambda configurations in Splunk, modeling cost per job, throughput, and tail latency.}
+        \resumeItem{Recovered AWS's undocumented vCPU-to-memory scaling ratio by linear regression.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Software Engineering Intern}{Jun 2022 -- Aug 2022}
+      {SmugMug}{Mountain View, CA}
+      \resumeItemListStart
+        \resumeItem{Owned a user-facing gallery stats feature end to end in PHP, React and Next.js, from PR review through QA.}
+        \resumeItem{Added daily refresh scheduling, clearer labels and empty states to the stats UI.}
+        \resumeItem{Wrote unit tests and backend changes for a release-critical PHP 8.1 upgrade, landing it on schedule.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\href{https://logan.macaskill.com/experience/ray-vox}{\textbf{\underline{ray-vox: Ray-traced Voxel Renderer}}} $|$ \emph{Rust, WebGPU, Data Structures, Optimization}}{2026}
+          \resumeItemListStart
+            \resumeItem{Packed an 84 MB voxel scene into 16 MB with a custom sparse-voxel structure, beating zstd at max (19 MB).}
+            \resumeItem{Rays walk the compressed form directly, with no decompression step.}
+            \resumeItem{Removed every child pointer with per-node bitmasks and popcount, packing each node offset into one 32-bit word.}
+            \resumeItem{Traversal stays branch-light, so GPU warps stay coherent.}
+            \resumeItem{Designed it as a GPU acceleration structure with level-of-detail and matching on-disk and in-GPU layouts.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\href{https://saisgonerogue.itch.io/sanity-check}{\textbf{\underline{Sanity Check: Logic Puzzle Game}}} $|$ \emph{Unity, C\#, Constraint Solving, Procedural Generation}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built the puzzle engine for a five-person, one-week game jam.}
+            \resumeItem{Encoded every possible answer as one bit in a hand-written bitset, so solving a room is set intersection.}
+            \resumeItem{Generated puzzles that are provably unique and minimal, rejecting any room where a clue could be dropped.}
+            \resumeItem{Hand-wrote the set layer with 64-bit words and SWAR popcount, scoring 20,000 candidate rooms per puzzle.}
+            \resumeItem{Tuned five difficulty tiers on how many statements must combine before the first deduction.}
+            \resumeItem{Also owned the game's lighting, post-processing and camera feel.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\href{https://logan.macaskill.com/experience/spectral-raymarcher}{\textbf{\underline{Real-time Dielectric Spectral Raymarcher}}} $|$ \emph{GLSL, Spectral Rendering, Sampling, GPU}}{2026}
+          \resumeItemListStart
+            \resumeItem{Rendered a physically based dispersive diamond in a single real-time GLSL shader, live in a browser tab.}
+            \resumeItem{Resolved 65,536 wavelengths from two samples per pixel by scheduling them across a 16x16 Bayer dither.}
+            \resumeItem{Replaced raymarching with exact ray-plane intersection across the icosahedron's 20 faces.}
+            \resumeItem{Peeled exact Fresnel energy per facet instead of sampling one path, staying noise-free at one sample.}
+            \resumeItem{Terminated each ray below 4\% trapped energy.}
+            \resumeItem{Kept every pixel a self-contained shader invocation, with no frame history.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\href{https://logan.macaskill.com/experience/crowd-surfers}{\textbf{\underline{Crowd Surfers: Real-time 3D Game}}} $|$ \emph{Godot, Shaders, Lighting, Architecture}}{2025 -- 2026}
+          \resumeItemListStart
+            \resumeItem{Convinced a 100-person student team to rebuild the renderer mid-project by building a prototype instead of arguing.}
+            \resumeItem{Moved it from faked-depth sprites to true 3D with an angled orthographic camera.}
+            \resumeItem{Built an occlusion shader fading buildings as the player skates behind them, with a frustum test and dithered alpha.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\href{https://logan.macaskill.com/experience/coaxial-swerve-drive}{\textbf{\underline{Coaxial Swerve Drive}}} $|$ \emph{Java, Control Theory, Computer Vision}}{2023 -- 2024}
+          \resumeItemListStart
+            \resumeItem{Led an off-season FRC team to a working coaxial swerve prototype in one month, four months ahead of schedule.}
+            \resumeItem{Built the CNC chassis, the electronics, and 2,000 lines of Java.}
+            \resumeItem{Held sub-centimeter localization through wheel slip by fusing encoders, gyro and AprilTag vision in a Kalman filter.}
+            \resumeItem{Ran per-module PID and feedforward on a 1 kHz control loop after self-teaching graduate-level control theory.}
+            \resumeItem{Simulated torque curves, inertia and brownouts on the production code, deriving current limits from tire friction.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Rust, C++, C\#, Python, Java, TypeScript / JavaScript, PHP, GLSL / WGSL} \\
+     \textbf{Graphics \& GPU}{: Vulkan, WebGPU, Ray Tracing, Real-Time Rendering, Rasterization, Shaders, Level-of-Detail} \\
+     \textbf{Tools \& Cloud}{: Git, Linux, AWS (EC2, Lambda, Graviton), Docker, OpenCV, OpenAI API, Godot, Unity, React / Next.js} \\
+     \textbf{Concepts}{: Performance Optimization, GPU Compute, Computer Vision, Pose Estimation, LLMs / Prompt Engineering, Control Theory}
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}
